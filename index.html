@@ -139,8 +139,28 @@
     <script>
         window.onload = function() {
             const video = document.getElementById('heroVideo');
-    
-
+        
+            if (video) {
+                // 1. 動画の準備ができたら実行するイベント
+                video.addEventListener('canplay', () => {
+                    video.playbackRate = 1.5;
+                    video.play().catch(e => console.log("Auto-play blocked"));
+                }, { once: true });
+        
+                // 2. すでに読み込みが終わっていた場合（キャッシュなど）の予備
+                if (video.readyState >= 3) {
+                    video.playbackRate = 1.5;
+                    video.play();
+                }
+        
+                // 3. GitHub Pages特有の「止まったまま」を防ぐ強制リロード
+                setTimeout(() => {
+                    if (video.paused) {
+                        video.load();
+                        video.play();
+                    }
+                }, 1000);
+            }
             // Slider Logic
             const slider1 = document.getElementById('comparison-slider');
             const beforeBox1 = document.getElementById('before-box');
@@ -182,4 +202,5 @@
 </body>
 
 </html>
+
 
