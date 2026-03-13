@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aknfox Portfolio</title>
+    <link rel="preload" href="Video.webm" as="video" type="video/webm">
+    <link rel="preload" href="VideoS.webm" as="video" type="video/webm">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <section class="hero">
-        <video id="heroVideo" autoplay muted playsinline loop poster="1701.jpeg" class="hero-video">
-        </video>
+        <video id="heroVideo" autoplay muted playsinline loop preload="metadata" poster="1701.jpeg" class="hero-video"></video>
         <img id="endImage" src="1701.jpeg" class="hero-video" style="display: block; object-fit: cover; z-index: 1;">
         
         <div class="hero-content">
@@ -23,19 +24,19 @@
         <div class="column-container">
             <div class="column">
                 <div class="column-video-box">
-                    <video autoplay loop muted playsinline><source src="perspective.webm" type="video/webm"></video>
+                    <video id="exVideo1" autoplay loop muted playsinline preload="metadata"></video>
                     <div class="text-overlay"><h3>Spatial<br>Perspective</h3><p>パース・空間設計</p></div>
                 </div>
             </div>
             <div class="column">
                 <div class="column-video-box">
-                    <video autoplay loop muted playsinline><source src="composite.webm" type="video/webm"></video>
+                    <video id="exVideo2" autoplay loop muted playsinline preload="metadata"></video>
                     <div class="text-overlay"><h3>Visual<br>Synthesis</h3><p>CG合成・VFX</p></div>
                 </div>
             </div>
             <div class="column">
                 <div class="column-video-box">
-                    <video autoplay loop muted playsinline><source src="full-cg.webm" type="video/webm"></video>
+                    <video id="exVideo3" autoplay loop muted playsinline preload="metadata"></video>
                     <div class="text-overlay"><h3>Full CG<br>Narrative</h3><p>フルCGアニメーション</p></div>
                 </div>
             </div>
@@ -66,6 +67,27 @@
         </div>
     </section>
 
+    <section class="content-block">
+        <div class="works-split-container is-reverse">
+            <div class="split-left">
+                <div class="single-image-box">
+                    <img src="https://drive.google.com/thumbnail?id=1f38xH4plJU3Wy6VRXl6l5ZU1eTp9bHfC&sz=w1000" alt="Detail Shot">
+                </div>
+            </div>
+            <div class="split-right">
+                <div class="tech-info">
+                    <span class="category-tag">Interior Design</span>
+                    <h3>High-Resolution Detail</h3>
+                    <p>マテリアルの質感と細部へのこだわりを強調。静止画ならではの密度を表現します。</p>
+                    <ul class="spec-list">
+                        <li><strong>Software</strong> Blender / Marvelous Designer</li>
+                        <li><strong>Focus</strong> Interior Materials & Texture</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="archive-section">
         <div class="section-container">
             <h2 class="section-title">Furniture & Prop Works</h2>
@@ -87,51 +109,47 @@
         <div class="section-container">
             <h2 class="section-title">Inquiry Form</h2>
             <div class="form-wrapper">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfBzYKNTDZu-GB29BNS1w9mReioDlOJLt__ZR_KxLa12RaoSA/viewform?embedded=true" width="100%" height="800" frameborder="0">Loading...</iframe>
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfBzYKNTDZu-GB29BNS1w9mReioDlOJLt__ZR_KxLa12RaoSA/viewform?embedded=true" width="100%" height="800" frameborder="0">読み込んでいます…</iframe>
             </div>
         </div>
     </section>
 
     <script>
         window.onload = function() {
-            const video = document.getElementById('heroVideo');
-            const endImage = document.getElementById('endImage');
+            const isMobile = window.innerWidth <= 768;
 
-            if (video) {
-                // 1. デバイス判定（768px以下はVideoS.webm）
-                const videoSrc = window.innerWidth <= 768 ? 'VideoS.webm' : 'Video.webm';
-                
-                // source要素を作成して追加
+            // --- 動画セットアップ関数 ---
+            const setupVideo = (id, pcSrc, spSrc) => {
+                const v = document.getElementById(id);
+                if (!v) return;
                 const source = document.createElement('source');
-                source.src = videoSrc;
+                source.src = isMobile ? spSrc : pcSrc;
                 source.type = 'video/webm';
-                video.appendChild(source);
+                v.appendChild(source);
+                v.load();
+            };
 
-                const playVideo = () => {
-                    video.playbackRate = 1.5;
-                    video.play().then(() => {
-                        video.style.zIndex = "2"; // 動いたら画像より前に出す
-                    }).catch(e => console.log("Play blocked:", e));
+            // 全動画をデバイスに合わせて最適化
+            setupVideo('heroVideo', 'Video.webm', 'VideoS.webm');
+            setupVideo('exVideo1', 'perspective.webm', 'perspectiveS.webm');
+            setupVideo('exVideo2', 'composite.webm', 'compositeS.webm');
+            setupVideo('exVideo3', 'full-cg.webm', 'full-cgS.webm');
+
+            // --- Hero再生ロジック ---
+            const heroVideo = document.getElementById('heroVideo');
+            if (heroVideo) {
+                const playHero = () => {
+                    heroVideo.playbackRate = 1.5;
+                    heroVideo.play().then(() => {
+                        heroVideo.style.zIndex = "2"; 
+                    }).catch(e => console.log("Play blocked"));
                 };
-
-                // 準備ができたら再生
-                video.addEventListener('canplay', playVideo, { once: true });
-
-                // キャッシュ対策
-                if (video.readyState >= 3) {
-                    playVideo();
-                }
-
-                // 強制ロード（GitHub/DW対策）
-                setTimeout(() => {
-                    if (video.paused) {
-                        video.load();
-                        playVideo();
-                    }
-                }, 1000);
+                heroVideo.addEventListener('canplay', playHero, { once: true });
+                if (heroVideo.readyState >= 3) playHero();
+                setTimeout(() => { if (heroVideo.paused) playHero(); }, 1000);
             }
 
-            // Slider Logic
+            // --- Slider Logic ---
             const slider = document.getElementById('comparison-slider');
             const beforeBox = document.getElementById('before-box');
             const line = document.querySelector('.slider-line');
@@ -145,29 +163,28 @@
                 update(slider.value);
             }
 
-            // Archive Scroll
+            // --- Archive Scroll ---
             const scrollWrapper = document.getElementById('loop-scroll');
             const arrowLeft = document.getElementById('arrow-left');
             const arrowRight = document.getElementById('arrow-right');
             if (scrollWrapper) {
-                if(arrowLeft) arrowLeft.addEventListener('click', () => scrollWrapper.scrollBy({ left: -600, behavior: 'smooth' }));
-                if(arrowRight) arrowRight.addEventListener('click', () => scrollWrapper.scrollBy({ left: 600, behavior: 'smooth' }));
-
+                arrowLeft.addEventListener('click', () => scrollWrapper.scrollBy({ left: -600, behavior: 'smooth' }));
+                arrowRight.addEventListener('click', () => scrollWrapper.scrollBy({ left: 600, behavior: 'smooth' }));
                 let isDown = false, startX, scrollLeft;
-                scrollWrapper.addEventListener('mousedown', (e) => {
+                scrollWrapper.onmousedown = (e) => {
                     isDown = true;
                     scrollWrapper.style.cursor = 'grabbing';
                     startX = e.pageX - scrollWrapper.offsetLeft;
                     scrollLeft = scrollWrapper.scrollLeft;
-                });
+                };
                 const stop = () => { isDown = false; scrollWrapper.style.cursor = 'grab'; };
-                scrollWrapper.addEventListener('mouseleave', stop);
-                scrollWrapper.addEventListener('mouseup', stop);
-                scrollWrapper.addEventListener('mousemove', (e) => {
+                window.addEventListener('mouseup', stop);
+                scrollWrapper.onmousemove = (e) => {
                     if (!isDown) return;
+                    e.preventDefault();
                     const x = e.pageX - scrollWrapper.offsetLeft;
                     scrollWrapper.scrollLeft = scrollLeft - (x - startX) * 2;
-                });
+                };
             }
         };
     </script>
