@@ -4,15 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aknfox Portfolio</title>
-    <link rel="preload" href="Video.webm" as="video" type="video/webm">
-    <link rel="preload" href="VideoS.webm" as="video" type="video/webm">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <section class="hero">
-        <video id="heroVideo" autoplay muted playsinline loop preload="metadata" poster="1701.jpeg" class="hero-video"></video>
-        <img id="endImage" src="1701.jpeg" class="hero-video" style="display: block; object-fit: cover; z-index: 1;">
+        <video id="heroVideo" autoplay muted playsinline loop class="hero-video">
+            <source media="(max-width: 1024px)" src="videoS.mp4" type="video/mp4">
+            <source media="(max-width: 1024px)" src="VideoS.webm" type="video/webm">
+            <source src="video.mp4" type="video/mp4">
+            <source src="Video.webm" type="video/webm">
+        </video>
+        <img id="endImage" src="1701.png" class="hero-video" style="display: block; object-fit: cover; z-index: 1;">
         
         <div class="hero-content">
             <h1 class="main-title">PERSPECTIVE & SYNTHESIS</h1>
@@ -24,19 +27,28 @@
         <div class="column-container">
             <div class="column">
                 <div class="column-video-box">
-                    <video id="exVideo1" autoplay loop muted playsinline preload="metadata"></video>
+                    <video autoplay loop muted playsinline>
+                        <source media="(max-width: 1024px)" src="perspectiveS.webm" type="video/webm">
+                        <source src="perspective.webm" type="video/webm">
+                    </video>
                     <div class="text-overlay"><h3>Spatial<br>Perspective</h3><p>パース・空間設計</p></div>
                 </div>
             </div>
             <div class="column">
                 <div class="column-video-box">
-                    <video id="exVideo2" autoplay loop muted playsinline preload="metadata"></video>
+                    <video autoplay loop muted playsinline>
+                        <source media="(max-width: 1024px)" src="compositeS.webm" type="video/webm">
+                        <source src="composite.webm" type="video/webm">
+                    </video>
                     <div class="text-overlay"><h3>Visual<br>Synthesis</h3><p>CG合成・VFX</p></div>
                 </div>
             </div>
             <div class="column">
                 <div class="column-video-box">
-                    <video id="exVideo3" autoplay loop muted playsinline preload="metadata"></video>
+                    <video autoplay loop muted playsinline>
+                        <source media="(max-width: 1024px)" src="full-cgS.webm" type="video/webm">
+                        <source src="full-cg.webm" type="video/webm">
+                    </video>
                     <div class="text-overlay"><h3>Full CG<br>Narrative</h3><p>フルCGアニメーション</p></div>
                 </div>
             </div>
@@ -67,126 +79,132 @@
         </div>
     </section>
 
-    <section class="content-block">
-        <div class="works-split-container is-reverse">
-            <div class="split-left">
-                <div class="single-image-box">
-                    <img src="https://drive.google.com/thumbnail?id=1f38xH4plJU3Wy6VRXl6l5ZU1eTp9bHfC&sz=w1000" alt="Detail Shot">
-                </div>
-            </div>
-            <div class="split-right">
-                <div class="tech-info">
-                    <span class="category-tag">Interior Design</span>
-                    <h3>High-Resolution Detail</h3>
-                    <p>マテリアルの質感と細部へのこだわりを強調。静止画ならではの密度を表現します。</p>
-                    <ul class="spec-list">
-                        <li><strong>Software</strong> Blender / Marvelous Designer</li>
-                        <li><strong>Focus</strong> Interior Materials & Texture</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section class="archive-section">
-    <div class="section-container">
-        <h2 class="section-title">Furniture & Prop Works</h2>
-        <div class="archive-container-wrapper">
-            <button class="scroll-arrow left" id="arrow-left">❮</button>
-            <button class="scroll-arrow right" id="arrow-right">❯</button>
-            <div class="horizontal-scroll-wrapper" id="loop-scroll">
-                <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1qf5NtajTEx9rbH7WTRuJGPZ1JiKmPFKY"></div>
+        <div class="section-container">
+            <h2 class="section-title">Furniture & Prop Works</h2>
+            <div class="archive-container-wrapper">
+                <button class="scroll-arrow left" id="arrow-left">❮</button>
+                <button class="scroll-arrow right" id="arrow-right">❯</button>
+                <div class="horizontal-scroll-wrapper" id="loop-scroll">
+                    <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1qf5NtajTEx9rbH7WTRuJGPZ1JiKmPFKY"></div>
                     <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1vKIT5l0ZZbJbPhEMy3roedz3l4-QaFs7"></div>
                     <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/101oQNlXTB8JDGJ2EmAeXa_oGR9DtjkfU"></div>
                     <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1tqycntaqk2NlZFC4bMDb36xv0D656Bk3"></div>
                     <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1qf5NtajTEx9rbH7WTRuJGPZ1JiKmPFKY"></div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <section id="contact" class="contact-section">
         <div class="section-container">
             <h2 class="section-title">Inquiry Form</h2>
             <div class="form-wrapper">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfBzYKNTDZu-GB29BNS1w9mReioDlOJLt__ZR_KxLa12RaoSA/viewform?embedded=true" width="100%" height="800" frameborder="0">読み込んでいます…</iframe>
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfBzYKNTDZu-GB29BNS1w9mReioDlOJLt__ZR_KxLa12RaoSA/viewform?embedded=true" width="100%" height="800" frameborder="0">Loading...</iframe>
             </div>
         </div>
     </section>
 
-    <script>
-        window.onload = function() {
-            const isMobile = window.innerWidth <= 768;
+   <script>
+        const initScripts = function() {
+            // DWとブラウザでイベントが重複して実行されるのを防ぐ
+            if (window.isInitialized) return;
+            window.isInitialized = true;
 
-            // --- 動画セットアップ関数 ---
-            const setupVideo = (id, pcSrc, spSrc) => {
-                const v = document.getElementById(id);
-                if (!v) return;
-                const source = document.createElement('source');
-                source.src = isMobile ? spSrc : pcSrc;
-                source.type = 'video/webm';
-                v.appendChild(source);
-                v.load();
-            };
+            // --- 1. Video Logic ---
+            try {
+                const video = document.getElementById('heroVideo');
+                if (video) {
+                    const playVideo = () => {
+                        video.playbackRate = 1.5;
+                        const playPromise = video.play();
+                        // DWなどの古いブラウザエンジン対策 (play()がPromiseを返さない場合のエラー回避)
+                        if (playPromise !== undefined) {
+                            playPromise.then(() => {
+                                video.style.zIndex = "2";
+                            }).catch(e => console.log("Play blocked:", e));
+                        } else {
+                            video.style.zIndex = "2"; // 古いエンジン用フォールバック
+                        }
+                    };
 
-            // 全動画をデバイスに合わせて最適化
-            setupVideo('heroVideo', 'Video.webm', 'VideoS.webm');
-            setupVideo('exVideo1', 'perspective.webm', 'perspectiveS.webm');
-            setupVideo('exVideo2', 'composite.webm', 'compositeS.webm');
-            setupVideo('exVideo3', 'full-cg.webm', 'full-cgS.webm');
-
-            // --- Hero再生ロジック ---
-            const heroVideo = document.getElementById('heroVideo');
-            if (heroVideo) {
-                const playHero = () => {
-                    heroVideo.playbackRate = 1.5;
-                    heroVideo.play().then(() => {
-                        heroVideo.style.zIndex = "2"; 
-                    }).catch(e => console.log("Play blocked"));
-                };
-                heroVideo.addEventListener('canplay', playHero, { once: true });
-                if (heroVideo.readyState >= 3) playHero();
-                setTimeout(() => { if (heroVideo.paused) playHero(); }, 1000);
+                    video.addEventListener('canplay', playVideo, { once: true });
+                    if (video.readyState >= 3) {
+                        playVideo();
+                    }
+                    setTimeout(() => {
+                        if (video.paused) {
+                            video.load();
+                            playVideo();
+                        }
+                    }, 1000);
+                }
+            } catch (e) {
+                console.warn("Video init error:", e);
             }
 
-            // --- Slider Logic ---
-            const slider = document.getElementById('comparison-slider');
-            const beforeBox = document.getElementById('before-box');
-            const line = document.querySelector('.slider-line');
-            if (slider && beforeBox) {
-                const update = (val) => {
-                    beforeBox.style.width = val + '%';
-                    document.documentElement.style.setProperty('--exposure-num', val);
-                    if(line) line.style.left = val + '%';
-                };
-                slider.addEventListener('input', (e) => update(e.target.value));
-                update(slider.value);
+            // --- 2. Slider Logic ---
+            try {
+                const slider = document.getElementById('comparison-slider');
+                const beforeBox = document.getElementById('before-box');
+                const line = document.querySelector('.slider-line');
+                if (slider && beforeBox) {
+                    const update = (val) => {
+                        beforeBox.style.width = val + '%';
+                        document.documentElement.style.setProperty('--exposure-num', val);
+                        if(line) line.style.left = val + '%';
+                    };
+                    slider.addEventListener('input', (e) => update(e.target.value));
+                    slider.addEventListener('change', (e) => update(e.target.value)); // DWのライブビュー対策に追加
+                    update(slider.value);
+                }
+            } catch (e) {
+                console.warn("Slider init error:", e);
             }
 
-            // --- Archive Scroll ---
-            const scrollWrapper = document.getElementById('loop-scroll');
-            const arrowLeft = document.getElementById('arrow-left');
-            const arrowRight = document.getElementById('arrow-right');
-            if (scrollWrapper) {
-                arrowLeft.addEventListener('click', () => scrollWrapper.scrollBy({ left: -600, behavior: 'smooth' }));
-                arrowRight.addEventListener('click', () => scrollWrapper.scrollBy({ left: 600, behavior: 'smooth' }));
-                let isDown = false, startX, scrollLeft;
-                scrollWrapper.onmousedown = (e) => {
-                    isDown = true;
-                    scrollWrapper.style.cursor = 'grabbing';
-                    startX = e.pageX - scrollWrapper.offsetLeft;
-                    scrollLeft = scrollWrapper.scrollLeft;
-                };
-                const stop = () => { isDown = false; scrollWrapper.style.cursor = 'grab'; };
-                window.addEventListener('mouseup', stop);
-                scrollWrapper.onmousemove = (e) => {
-                    if (!isDown) return;
-                    e.preventDefault();
-                    const x = e.pageX - scrollWrapper.offsetLeft;
-                    scrollWrapper.scrollLeft = scrollLeft - (x - startX) * 2;
-                };
+            // --- 3. Archive Scroll Logic ---
+            try {
+                const scrollWrapper = document.getElementById('loop-scroll');
+                const arrowLeft = document.getElementById('arrow-left');
+                const arrowRight = document.getElementById('arrow-right');
+                
+                if (scrollWrapper) {
+                    // DWの古いエンジン向けにscrollByの互換性を担保
+                    const smoothScroll = (amount) => {
+                        if ('scrollBehavior' in document.documentElement.style) {
+                            scrollWrapper.scrollBy({ left: amount, behavior: 'smooth' }); // 最新ブラウザ（GitHub）用
+                        } else {
+                            scrollWrapper.scrollLeft += amount; // DWライブプレビュー用
+                        }
+                    };
+
+                    if(arrowLeft) arrowLeft.addEventListener('click', () => smoothScroll(-500));
+                    if(arrowRight) arrowRight.addEventListener('click', () => smoothScroll(500));
+
+                    let isDown = false, startX, scrollLeft;
+                    scrollWrapper.addEventListener('mousedown', (e) => {
+                        isDown = true;
+                        scrollWrapper.style.cursor = 'grabbing';
+                        startX = e.pageX - scrollWrapper.offsetLeft;
+                        scrollLeft = scrollWrapper.scrollLeft;
+                    });
+                    const stop = () => { isDown = false; scrollWrapper.style.cursor = 'grab'; };
+                    scrollWrapper.addEventListener('mouseleave', stop);
+                    scrollWrapper.addEventListener('mouseup', stop);
+                    scrollWrapper.addEventListener('mousemove', (e) => {
+                        if (!isDown) return;
+                        const x = e.pageX - scrollWrapper.offsetLeft;
+                        scrollWrapper.scrollLeft = scrollLeft - (x - startX) * 2;
+                    });
+                }
+            } catch (e) {
+                console.warn("Scroll init error:", e);
             }
         };
+
+        // DWとGitHub Pagesの両方の環境で確実に発火させるためのハイブリッド登録
+        document.addEventListener("DOMContentLoaded", initScripts);
+        window.addEventListener("load", initScripts);
     </script>
 </body>
 </html>

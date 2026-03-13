@@ -34,7 +34,7 @@ body {
     width: 100%;
     text-align: center;
     font-size: clamp(1.5rem, 4vw, 2.2rem);
-    letter-spacing: 0.5em; 
+    letter-spacing: 0.5em; /* 広く取って高級感を出す */
     text-transform: uppercase;
     margin-bottom: 80px;
     font-weight: 700;
@@ -48,46 +48,117 @@ body {
 .main-title { font-size: clamp(2rem, 8vw, 6rem); font-weight: 700; letter-spacing: 0.2em; text-align: center; line-height: 1; }
 .sub-title { font-size: clamp(0.8rem, 2vw, 1.1rem); opacity: 0.7; letter-spacing: 0.4em; margin-top: 20px; font-weight: 300; }
 
-/* --- 4. Expertise --- */
+/* --- 4. Expertise (Three Columns) --- */
 .column-container { display: flex; width: 100%; border-bottom: 1px solid #111; }
 .column { flex: 1; position: relative; height: 40vh; overflow: hidden; border-right: 1px solid #111; }
-.column video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.4); transition: 0.8s; }
+.column video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.4); transition: 0.8s cubic-bezier(0.2, 1, 0.3, 1); }
 .column:hover video { filter: brightness(0.7); transform: scale(1.08); }
 
 .text-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; text-align: center; pointer-events: none; }
-.text-overlay h3 { font-size: clamp(1.2rem, 2.5vw, 2rem); line-height: 1.2; margin-bottom: 10px; }
+.text-overlay h3 { font-size: clamp(1.2rem, 2.5vw, 2rem); line-height: 1.2; margin-bottom: 10px; letter-spacing: 0.1em; }
+.text-overlay p { font-size: 0.7rem; opacity: 0.5; letter-spacing: 0.2em; text-transform: uppercase; }
 
-/* --- 5. Works --- */
+/* --- 5. Content Blocks (Works) --- */
 .content-block { padding: var(--section-gap) 5%; background: var(--card-bg); width: 100%; }
-.works-split-container { display: flex; width: 100%; max-width: 2500px; margin: 0 auto !important; gap: 100px; align-items: center; justify-content: center; }
+
+.works-split-container { 
+    display: flex; width: 100%; max-width: 2500px; margin: 0 auto !important; 
+    gap: 100px; align-items: center; justify-content: center; 
+}
+
 @media (min-width: 1025px) { .is-reverse { flex-direction: row-reverse !important; } }
+
 .split-left { flex: 0 1 1300px; min-width: 0; position: relative; }
 .split-right { flex: 0 1 500px; padding: 20px; }
 
-/* --- Slider --- */
-.comparison-slider, .single-image-box { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid #222; box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
+/* --- Slider & Image Styling --- */
+.comparison-slider, .single-image-box { 
+    position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; 
+    border: 1px solid #222; box-shadow: 0 30px 60px rgba(0,0,0,0.5); 
+}
 .image-after, #before-box { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 .image-after img, .single-image-box img { width: 100%; height: 100%; object-fit: cover; }
+
 #before-box { position: absolute; top: 0; left: 0; height: 100%; width: 50%; overflow: hidden; z-index: 2; border-right: 1px solid rgba(255,255,255,0.4); }
-#before-box img { position: absolute; top: 0; left: 0; height: 100%; width: calc(100% * (100 / var(--exposure-num, 50))); object-fit: cover; max-width: none; }
+#before-box img { 
+    position: absolute; top: 0; left: 0; height: 100%; 
+    width: calc(100% * (100 / var(--exposure-num, 50))); 
+    object-fit: cover; max-width: none; 
+}
+
 .slider { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: transparent; z-index: 10; cursor: ew-resize; appearance: none; -webkit-appearance: none; }
 .slider-line { position: absolute; top: 0; left: 50%; width: 1px; height: 100%; background: rgba(255,255,255,0.8); z-index: 3; pointer-events: none; }
 
-/* --- Archive & Contact --- */
+/* --- 6. Typography (Works Text) --- */
+.category-tag { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.4em; display: block; margin-bottom: 20px; }
+.tech-info h3 { font-size: clamp(1.8rem, 4vw, 3rem); margin-bottom: 30px; line-height: 1.1; font-weight: 600; }
+.tech-info p { color: #aaa; font-size: 1rem; margin-bottom: 40px; font-weight: 300; }
+
+.spec-list { list-style: none; border-top: 1px solid #222; padding-top: 40px; }
+.spec-list li { font-size: 0.9rem; color: #777; margin-bottom: 18px; display: flex; align-items: center; }
+.spec-list li strong { color: #fff; width: 110px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; }
+
+/* --- 7. Archive (Horizontal Scroll) --- */
 .archive-section { padding: var(--section-gap) 0; background: #000; }
 .archive-container-wrapper { position: relative; width: 100%; }
-.scroll-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 100; background: rgba(0, 0, 0, 0.5); color: white; border: none; width: 70px; height: 120px; font-size: 1.5rem; cursor: pointer; backdrop-filter: blur(5px); }
-.horizontal-scroll-wrapper { display: flex; overflow-x: auto; gap: 40px; padding: 20px 5%; scrollbar-width: none; cursor: grab; scroll-behavior: smooth; }
-.scroll-item { flex: 0 0 auto; width: 550px; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid #111; transition: 0.5s; }
-.scroll-item:hover { transform: translateY(-15px); border-color: #555; }
-.contact-section { padding: var(--section-gap) 5%; background: var(--card-bg); border-top: 1px solid #111; }
-.form-wrapper { width: 100%; max-width: 900px; margin: 0 auto; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.6); }
 
-/* --- Responsive --- */
+.scroll-arrow { 
+    position: absolute; top: 50%; transform: translateY(-50%); z-index: 100; 
+    background: rgba(0, 0, 0, 0.5); color: white; border: none; width: 70px; height: 120px; 
+    font-size: 1.5rem; cursor: pointer; transition: 0.4s; display: flex; justify-content: center; align-items: center;
+    backdrop-filter: blur(5px);
+}
+.scroll-arrow:hover { background: rgba(255, 255, 255, 0.1); }
+.scroll-arrow.left { left: 0; border-radius: 0 10px 10px 0; }
+.scroll-arrow.right { right: 0; border-radius: 10px 0 0 10px; }
+
+.horizontal-scroll-wrapper { 
+    display: flex; overflow-x: auto; gap: 40px; padding: 20px 5%; 
+    scrollbar-width: none; cursor: grab; scroll-behavior: smooth; 
+}
+.horizontal-scroll-wrapper::-webkit-scrollbar { display: none; }
+
+.scroll-item { 
+    flex: 0 0 auto; width: 550px; aspect-ratio: 16 / 9; overflow: hidden; 
+    border: 1px solid #111; transition: 0.5s; 
+}
+.scroll-item:hover { border-color: #555; transform: translateY(-15px); }
+.scroll-item img { width: 100%; height: 100%; object-fit: cover; }
+
+/* --- 8. Contact Section --- */
+.contact-section { padding: var(--section-gap) 5%; background: var(--card-bg); border-top: 1px solid #111; }
+.form-wrapper { 
+    width: 100%; max-width: 900px; margin: 0 auto; background: #fff; 
+    border-radius: 12px; overflow: hidden; 
+    box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+}
+
+/* --- 9. Responsive --- */
 @media (max-width: 1024px) {
+    :root { --section-gap: 10vh; }
+    
+    /* 1. トップの動画の縦幅を半分（50vh）に変更 */
+    .hero { height: 50vh; }
+
+    /* 2. サブタイトルの偏りを修正（中央揃え ＋ 字間のズレ補正） */
+    .sub-title { 
+        text-align: center; 
+        text-indent: 0.4em; 
+        padding: 0 5%; 
+        line-height: 1.6; 
+    }
+
+    /* ★追加: Furniture & Prop Works の上下の隙間を半分にする */
+    .archive-section { padding: 5vh 0; }
+
+    /* 既存のスマホ用レイアウト設定 */
     .column-container { flex-direction: column; }
     .column { height: 25vh; border-right: none; border-bottom: 1px solid #111; }
     .works-split-container { flex-direction: column !important; gap: 50px; }
-    .scroll-arrow { display: none; }
+    .split-left, .split-right { flex: none; width: 100%; max-width: 600px; text-align: center; }
+    .tech-info p { margin: 0 auto 30px auto; }
+    .spec-list li { justify-content: center; }
+    .scroll-arrow { display: none; } 
     .scroll-item { width: 320px; }
+    .section-title { margin-bottom: 40px; }
 }
