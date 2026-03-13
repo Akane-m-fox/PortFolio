@@ -9,15 +9,15 @@
 
 <body>
     <section class="hero">
-        <video id="heroVideo" autoplay muted playsinline class="hero-video">
+        <video id="heroVideo" autoplay muted playsinline loop class="hero-video">
             <source src="Video.webm" type="video/webm">
             <source src="video.mp4" type="video/mp4">
         </video>
-        <img id="endImage" src="1701.png" class="hero-video" style="display: none; object-fit: cover; z-index: -1;">
+        <img id="endImage" src="1701.png" class="hero-video" style="z-index: 0; object-fit: cover;">
         
         <div class="hero-content">
             <h1 class="main-title">PERSPECTIVE & SYNTHESIS</h1>
-            <p class="sub-title">パース・CG合成・フルCGアニメーション</p>
+            <p class="sub-title">Architecture • Visual Effect • CG Animation</p>
         </div>
     </section>
     
@@ -26,28 +26,19 @@
             <div class="column">
                 <div class="column-video-box">
                     <video autoplay loop muted playsinline><source src="perspective.webm" type="video/webm"></video>
-                    <div class="text-overlay">
-                        <h3>Spatial<br>Perspective</h3>
-                        <p>パース・空間設計</p>
-                    </div>
+                    <div class="text-overlay"><h3>Spatial<br>Perspective</h3><p>パース・空間設計</p></div>
                 </div>
             </div>
             <div class="column">
                 <div class="column-video-box">
                     <video autoplay loop muted playsinline><source src="composite.webm" type="video/webm"></video>
-                    <div class="text-overlay">
-                        <h3>Visual<br>Synthesis</h3>
-                        <p>CG合成・VFX</p>
-                    </div>
+                    <div class="text-overlay"><h3>Visual<br>Synthesis</h3><p>CG合成・VFX</p></div>
                 </div>
             </div>
             <div class="column">
                 <div class="column-video-box">
                     <video autoplay loop muted playsinline><source src="full-cg.webm" type="video/webm"></video>
-                    <div class="text-overlay">
-                        <h3>Full CG<br>Narrative</h3>
-                        <p>フルCGアニメーション</p>
-                    </div>
+                    <div class="text-overlay"><h3>Full CG<br>Narrative</h3><p>フルCGアニメーション</p></div>
                 </div>
             </div>
         </div>
@@ -57,12 +48,8 @@
         <div class="works-split-container">
             <div class="split-left">
                 <div class="comparison-slider">
-                    <div class="image-after">
-                        <img src="https://lh3.googleusercontent.com/d/1XfkKQKThlIJ-zlhm7731KRrz_Vuh-IKX" alt="Final Render">
-                    </div>
-                    <div class="image-before" id="before-box">
-                        <img src="https://lh3.googleusercontent.com/d/1kJ-jz-eXAGCNBGLXrzDdcBa5aZUqMuEi" alt="Raw Model">
-                    </div>
+                    <div class="image-after"><img src="https://lh3.googleusercontent.com/d/1XfkKQKThlIJ-zlhm7731KRrz_Vuh-IKX" alt="Final Render"></div>
+                    <div class="image-before" id="before-box"><img src="https://lh3.googleusercontent.com/d/1kJ-jz-eXAGCNBGLXrzDdcBa5aZUqMuEi" alt="Raw Model"></div>
                     <input type="range" min="0" max="100" value="50" class="slider" id="comparison-slider">
                     <div class="slider-line"></div>
                 </div>
@@ -71,10 +58,11 @@
                 <div class="tech-info">
                     <span class="category-tag">Architectural Visualization</span>
                     <h3>Visual Synthesis & Light</h3>
-                    <p>単なる3Dモデルに、現実世界の物理法則を流し込むプロセス。物理計算に基づいた光の挙動を追求しています。</p>
+                    <p>物理法則に基づいた光の挙動を追求し、デジタル空間に圧倒的な実在感を構築します。</p>
                     <ul class="spec-list">
-                        <li><strong>Tool:</strong> Blender / Substance Painter</li>
-                        <li><strong>Focus:</strong> Photorealistic Lighting</li>
+                        <li><strong>Software</strong> Blender / Substance Painter</li>
+                        <li><strong>Engine</strong> Cycles / Octane</li>
+                        <li><strong>Focus</strong> Photorealistic Lighting</li>
                     </ul>
                 </div>
             </div>
@@ -85,17 +73,17 @@
         <div class="works-split-container is-reverse">
             <div class="split-left">
                 <div class="single-image-box">
-                    <img src="https://drive.google.com/thumbnail?id=1f38xH4plJU3Wy6VRXl6l5ZU1eTp9bHfC&sz=w1000" alt="Final Render">
+                    <img src="https://drive.google.com/thumbnail?id=1f38xH4plJU3Wy6VRXl6l5ZU1eTp9bHfC&sz=w1000" alt="Detail Shot">
                 </div>
             </div>
             <div class="split-right">
                 <div class="tech-info">
-                    <span class="category-tag">Next Work</span>
-                    <h3>High-Resolution Interior</h3>
-                    <p>完成された作品の静止画クオリティを強調します。ディテールへのこだわりをじっくりと鑑賞いただけます。</p>
+                    <span class="category-tag">Interior Design</span>
+                    <h3>High-Resolution Detail</h3>
+                    <p>マテリアルの質感と細部へのこだわりを強調。静止画ならではの密度を表現します。</p>
                     <ul class="spec-list">
-                        <li><strong>Tool:</strong> Blender / Substance Painter</li>
-                        <li><strong>Focus:</strong> Photorealistic Lighting</li>
+                        <li><strong>Software</strong> Blender / Marvelous Designer</li>
+                        <li><strong>Focus</strong> Interior Materials & Texture</li>
                     </ul>
                 </div>
             </div>
@@ -103,63 +91,71 @@
     </section>
 
     <section class="archive-section">
-        <div class="container"><h2>Furniture & Prop Works</h2></div>
-        <div class="horizontal-scroll-wrapper" id="loop-scroll">
-            <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1qf5NtajTEx9rbH7WTRuJGPZ1JiKmPFKY"></div>
-            <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1vKIT5l0ZZbJbPhEMy3roedz3l4-QaFs7"></div>
-            <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/101oQNlXTB8JDGJ2EmAeXa_oGR9DtjkfU"></div>
-            <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1tqycntaqk2NlZFC4bMDb36xv0D656Bk3"></div>
-            <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1ZhOoVXw_ftBFUo6mf0or7HzqApZ7EFop"></div>
-            <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1T-EYA6gcFgf2KN4Svxhz5tFXYjpkvd7e"></div>
-            <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1qf5NtajTEx9rbH7WTRuJGPZ1JiKmPFKY"></div>
-            <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1vKIT5l0ZZbJbPhEMy3roedz3l4-QaFs7"></div>
-            <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/101oQNlXTB8JDGJ2EmAeXa_oGR9DtjkfU"></div>
-            <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1tqycntaqk2NlZFC4bMDb36xv0D656Bk3"></div>
-            <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1ZhOoVXw_ftBFUo6mf0or7HzqApZ7EFop"></div>
-            <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1T-EYA6gcFgf2KN4Svxhz5tFXYjpkvd7e"></div>
+        <div class="section-container">
+            <h2 class="section-title">Furniture & Prop Works</h2>
+            <div class="archive-container-wrapper">
+                <button class="scroll-arrow left" id="arrow-left">❮</button>
+                <button class="scroll-arrow right" id="arrow-right">❯</button>
+                <div class="horizontal-scroll-wrapper" id="loop-scroll">
+                    <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1qf5NtajTEx9rbH7WTRuJGPZ1JiKmPFKY"></div>
+                    <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1vKIT5l0ZZbJbPhEMy3roedz3l4-QaFs7"></div>
+                    <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/101oQNlXTB8JDGJ2EmAeXa_oGR9DtjkfU"></div>
+                    <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1tqycntaqk2NlZFC4bMDb36xv0D656Bk3"></div>
+                    <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1ZhOoVXw_ftBFUo6mf0or7HzqApZ7EFop"></div>
+                    <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1T-EYA6gcFgf2KN4Svxhz5tFXYjpkvd7e"></div>
+                    <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1qf5NtajTEx9rbH7WTRuJGPZ1JiKmPFKY"></div>
+                    <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1vKIT5l0ZZbJbPhEMy3roedz3l4-QaFs7"></div>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="contact" class="contact-section">
-        <div class="container">
-            <h2>Inquiry Form</h2>
+        <div class="section-container">
+            <h2 class="section-title">Inquiry Form</h2>
             <div class="form-wrapper">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfBzYKNTDZu-GB29BNS1w9mReioDlOJLt__ZR_KxLa12RaoSA/viewform?embedded=true" width="100%" height="800" frameborder="0">読み込んでいます…</iframe>
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfBzYKNTDZu-GB29BNS1w9mReioDlOJLt__ZR_KxLa12RaoSA/viewform?embedded=true" width="100%" height="800" frameborder="0">Loading...</iframe>
             </div>
         </div>
     </section>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // 1. Hero Video (終了判定を削除して安定化)
             const video = document.getElementById('heroVideo');
-            const endImage = document.getElementById('endImage');
-
-            // 1. Video Logic
             if (video) {
-                video.playbackRate = 1.5;
-                video.play().catch(() => console.log("Auto-play blocked"));
-                video.addEventListener('ended', function() {
+                video.muted = true; 
+                video.play().catch(() => {
+                    console.log("Video auto-play blocked");
+                    // 再生失敗時のみ画像を表に出す
                     video.style.display = 'none';
-                    if(endImage) endImage.style.display = 'block';
+                    document.getElementById('endImage').style.display = 'block';
                 });
             }
 
-            // 2. Slider Logic (Improved)
+            // 2. Before/After Slider
             const slider = document.getElementById('comparison-slider');
             const beforeBox = document.getElementById('before-box');
             const line = document.querySelector('.slider-line');
-            
             if (slider && beforeBox) {
-                slider.addEventListener('input', (e) => {
-                    const value = e.target.value + '%';
-                    document.documentElement.style.setProperty('--exposure', value);
-                    if(line) line.style.left = value;
-                });
+                const updateSlider = (val) => {
+                    beforeBox.style.width = val + '%';
+                    document.documentElement.style.setProperty('--exposure-num', val);
+                    if(line) line.style.left = val + '%';
+                };
+                slider.addEventListener('input', (e) => updateSlider(e.target.value));
+                updateSlider(slider.value);
             }
 
-            // 3. Drag Scroll & Loop Logic
+            // 3. Archive Scroll
             const scrollWrapper = document.getElementById('loop-scroll');
+            const arrowLeft = document.getElementById('arrow-left');
+            const arrowRight = document.getElementById('arrow-right');
+
             if (scrollWrapper) {
+                arrowLeft.addEventListener('click', () => scrollWrapper.scrollBy({ left: -600, behavior: 'smooth' }));
+                arrowRight.addEventListener('click', () => scrollWrapper.scrollBy({ left: 600, behavior: 'smooth' }));
+
                 let isDown = false, startX, scrollLeft;
                 scrollWrapper.addEventListener('mousedown', (e) => {
                     isDown = true;
@@ -176,11 +172,6 @@
                     const x = e.pageX - scrollWrapper.offsetLeft;
                     const walk = (x - startX) * 2;
                     scrollWrapper.scrollLeft = scrollLeft - walk;
-                });
-                scrollWrapper.addEventListener('scroll', () => {
-                    const half = scrollWrapper.scrollWidth / 2;
-                    if (scrollWrapper.scrollLeft >= half) scrollWrapper.scrollLeft = 1;
-                    if (scrollWrapper.scrollLeft <= 0) scrollWrapper.scrollLeft = half - 1;
                 });
             }
         });
