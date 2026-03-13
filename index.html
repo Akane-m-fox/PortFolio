@@ -67,27 +67,6 @@
         </div>
     </section>
 
-    <section class="content-block">
-        <div class="works-split-container is-reverse">
-            <div class="split-left">
-                <div class="single-image-box">
-                    <img src="https://drive.google.com/thumbnail?id=1f38xH4plJU3Wy6VRXl6l5ZU1eTp9bHfC&sz=w1000" alt="Detail Shot">
-                </div>
-            </div>
-            <div class="split-right">
-                <div class="tech-info">
-                    <span class="category-tag">Interior Design</span>
-                    <h3>High-Resolution Detail</h3>
-                    <p>マテリアルの質感と細部へのこだわりを強調。静止画ならではの密度を表現します。</p>
-                    <ul class="spec-list">
-                        <li><strong>Software</strong> Blender / Marvelous Designer</li>
-                        <li><strong>Focus</strong> Interior Materials & Texture</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section class="archive-section">
         <div class="section-container">
             <h2 class="section-title">Furniture & Prop Works</h2>
@@ -109,7 +88,7 @@
         <div class="section-container">
             <h2 class="section-title">Inquiry Form</h2>
             <div class="form-wrapper">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfBzYKNTDZu-GB29BNS1w9mReioDlOJLt__ZR_KxLa12RaoSA/viewform?embedded=true" width="100%" height="800" frameborder="0">読み込んでいます…</iframe>
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfBzYKNTDZu-GB29BNS1w9mReioDlOJLt__ZR_KxLa12RaoSA/viewform?embedded=true" width="100%" height="800" frameborder="0">Loading...</iframe>
             </div>
         </div>
     </section>
@@ -118,10 +97,11 @@
         window.onload = function() {
             const isMobile = window.innerWidth <= 768;
 
-            // --- 動画セットアップ関数 ---
+            // 1. 各動画のセットアップ (S版切り替え)
             const setupVideo = (id, pcSrc, spSrc) => {
                 const v = document.getElementById(id);
                 if (!v) return;
+                v.innerHTML = '';
                 const source = document.createElement('source');
                 source.src = isMobile ? spSrc : pcSrc;
                 source.type = 'video/webm';
@@ -129,13 +109,12 @@
                 v.load();
             };
 
-            // 全動画をデバイスに合わせて最適化
             setupVideo('heroVideo', 'Video.webm', 'VideoS.webm');
             setupVideo('exVideo1', 'perspective.webm', 'perspectiveS.webm');
             setupVideo('exVideo2', 'composite.webm', 'compositeS.webm');
             setupVideo('exVideo3', 'full-cg.webm', 'full-cgS.webm');
 
-            // --- Hero再生ロジック ---
+            // 2. Hero再生ロジック
             const heroVideo = document.getElementById('heroVideo');
             if (heroVideo) {
                 const playHero = () => {
@@ -149,7 +128,7 @@
                 setTimeout(() => { if (heroVideo.paused) playHero(); }, 1000);
             }
 
-            // --- Slider Logic ---
+            // 3. Slider Logic (最新UIの変数 --exposure-num に対応)
             const slider = document.getElementById('comparison-slider');
             const beforeBox = document.getElementById('before-box');
             const line = document.querySelector('.slider-line');
@@ -163,13 +142,14 @@
                 update(slider.value);
             }
 
-            // --- Archive Scroll ---
+            // 4. Archive Scroll
             const scrollWrapper = document.getElementById('loop-scroll');
             const arrowLeft = document.getElementById('arrow-left');
             const arrowRight = document.getElementById('arrow-right');
             if (scrollWrapper) {
-                arrowLeft.addEventListener('click', () => scrollWrapper.scrollBy({ left: -600, behavior: 'smooth' }));
-                arrowRight.addEventListener('click', () => scrollWrapper.scrollBy({ left: 600, behavior: 'smooth' }));
+                if(arrowLeft) arrowLeft.addEventListener('click', () => scrollWrapper.scrollBy({ left: -600, behavior: 'smooth' }));
+                if(arrowRight) arrowRight.addEventListener('click', () => scrollWrapper.scrollBy({ left: 600, behavior: 'smooth' }));
+
                 let isDown = false, startX, scrollLeft;
                 scrollWrapper.onmousedown = (e) => {
                     isDown = true;
