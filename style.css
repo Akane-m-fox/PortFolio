@@ -84,10 +84,75 @@ body {
 .form-wrapper { width: 100%; max-width: 900px; margin: 0 auto; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.6); }
 
 /* --- Responsive --- */
+/* --- 9. Responsive (スマホ・タブレット向け余白・レイアウト最適化) --- */
 @media (max-width: 1024px) {
-    .column-container { flex-direction: column; }
-    .column { height: 25vh; border-right: none; border-bottom: 1px solid #111; }
-    .works-split-container { flex-direction: column !important; gap: 50px; }
-    .scroll-arrow { display: none; } 
-    .scroll-item { width: 320px; }
+    :root { 
+        --section-gap: 50px; /* セクション間の上下余白をPC(15vh)からスマホ用に大幅縮小 */
+    }
+
+    /* 1. Expertiseセクション（三種類）の後の余白を削る */
+    .column { 
+        height: 160px; /* 高さを40vhから固定値に。これで縦に間延びするのを防ぐ */
+        border-right: none; 
+        border-bottom: 1px solid #111; 
+    }
+    
+    .expertise-section {
+        margin-bottom: 0; /* セクション自体の外側の余白をゼロに */
+    }
+
+    /* 2. ビフォーアフター(Works)セクションの調整 */
+    .content-block {
+        padding: var(--section-gap) 5%; /* 上下の巨大な余白(15vh)を50pxまで圧縮 */
+    }
+
+    .works-split-container { 
+        flex-direction: column !important; 
+        gap: 25px; /* 画像と文字の間の隙間(100px)を最小限に */
+    }
+
+    .split-left, .split-right { 
+        flex: none; 
+        width: 100%; 
+        max-width: 100%;
+        text-align: center; 
+    }
+
+    /* 3. ビフォーアフター画像のデザイン微調整 */
+    .comparison-slider {
+        margin-bottom: 0; /* 画像下の余白をカット */
+    }
+
+    .tech-info h3 {
+        margin-bottom: 15px;
+        font-size: 1.8rem;
+    }
+
+    .tech-info p { 
+        margin: 0 auto 20px auto; 
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .spec-list {
+        padding-top: 20px;
+        border-top: 1px solid #222;
+    }
+
+    .spec-list li { 
+        justify-content: center; /* スマホでは中央寄せ */
+        font-size: 0.8rem;
+        margin-bottom: 8px;
+    }
+
+    /* 4. アーカイブ(Furniture)周り */
+    .section-title { 
+        margin-bottom: 30px; /* タイトル下の余白をPCの80pxから30pxへ */
+    }
+
+    .scroll-item { 
+        width: 300px; /* スマホで見やすいサイズに */
+    }
+
+    .scroll-arrow { display: none; } /* スマホでは矢印を消してスワイプのみに */
 }
