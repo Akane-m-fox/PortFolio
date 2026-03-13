@@ -10,17 +10,17 @@
 <body>
 
     <section class="hero">
-        <video id="heroVideo" autoplay muted playsinline class="hero-video">
+            <video id="heroVideo" autoplay muted playsinline class="hero-video">
                 <source src="Video.webm" type="video/webm">
                 <source src="video.mp4" type="video/mp4">
             </video>
-            
+
             <img id="endImage" src="1701.png" class="hero-video" style="display: none; object-fit: cover; z-index: -1;">
-            
+
             <div class="hero-content">
                 </div>
         </section>
-    
+
     <section class="expertise-section">
         <div class="column-container">
             <div class="column">
@@ -83,7 +83,7 @@
 
     <section class="content-block">
             <div class="works-split-container is-reverse">
-                
+
                 <div class="split-left">
                     <div class="single-image-box">
                         <img src="https://drive.google.com/thumbnail?id=1f38xH4plJU3Wy6VRXl6l5ZU1eTp9bHfC&sz=w1000" alt="Final Render">
@@ -139,12 +139,33 @@
     <script>
         window.onload = function() {
             const video = document.getElementById('heroVideo');
-            if (video) video.playbackRate = 1.5;
-            // 強制再生の命令
-            video.play().catch(error => {
-                console.log("Autoplay was prevented. Click to play.");
-            });
 
+            if (video) {
+                // 1. 動画の準備ができたら実行するイベント
+                video.addEventListener('canplay', () => {
+                    video.playbackRate = 1.5;
+                    video.play().catch(e => console.log("Auto-play blocked"));
+                }, { once: true });
+
+                // 2. すでに読み込みが終わっていた場合（キャッシュなど）の予備
+                if (video.readyState >= 3) {
+                    video.playbackRate = 1.5;
+                    video.play();
+                }
+                if (video) {
+                    video.addEventListener('ended', function() {
+                        video.style.display = 'none';    // 動画を隠す
+                        endImage.style.display = 'block'; // 画像を表示する
+                    });
+
+                // 3. GitHub Pages特有の「止まったまま」を防ぐ強制リロード
+                setTimeout(() => {
+                    if (video.paused) {
+                        video.load();
+                        video.play();
+                    }
+                }, 1000);
+            }
             // Slider Logic
             const slider1 = document.getElementById('comparison-slider');
             const beforeBox1 = document.getElementById('before-box');
@@ -160,12 +181,7 @@
             // Drag Scroll & Loop Logic
             const scrollWrapper = document.getElementById('loop-scroll');
             if (scrollWrapper) {
-                let isDown = false, startX, scrollLeft;
-                scrollWrapper.addEventListener('mousedown', (e) => {
-                    isDown = true; scrollWrapper.style.cursor = 'grabbing';
-                    startX = e.pageX - scrollWrapper.offsetLeft;
-                    scrollLeft = scrollWrapper.scrollLeft;
-                });
+@@ -185,24 +190,25 @@
                 const stop = () => { isDown = false; scrollWrapper.style.cursor = 'grab'; };
                 scrollWrapper.addEventListener('mouseleave', stop);
                 scrollWrapper.addEventListener('mouseup', stop);
@@ -186,4 +202,3 @@
 </body>
 
 </html>
-
