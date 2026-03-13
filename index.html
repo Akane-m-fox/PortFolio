@@ -9,10 +9,11 @@
 
 <body>
     <section class="hero">
-    <video id="heroVideo" autoplay muted playsinline loop class="hero-video" style="opacity: 0;">
+    <video id="heroVideo" autoplay loop muted playsinline class="hero-video">
         <source src="Video.webm" type="video/webm">
         <source src="video.mp4" type="video/mp4">
     </video>
+    
     <img id="endImage" src="1701.png" class="hero-video" style="display: none; object-fit: cover; z-index: 1;">
     
     <div class="hero-content">
@@ -121,38 +122,23 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+    // 1. Hero Video の強制再生処理
             const video = document.getElementById('heroVideo');
             const endImage = document.getElementById('endImage');
         
             if (video) {
-                // ミュートを確実にして再生を開始する
+                // Expertise動画と同じようにミュート状態で再生を開始
                 video.muted = true;
-                
-                // 動画が再生可能になったら表示する
-                video.oncanplay = () => {
-                    video.style.opacity = 1;
-                };
+                const playPromise = video.play();
         
-                const promise = video.play();
-                if (promise !== undefined) {
-                    promise.catch(error => {
-                        // 自動再生がブロックされた場合は即座に画像に切り替える
-                        console.log("Auto-play blocked, showing fallback image");
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.log("Hero video autoplay failed. Error:", error);
+                        // 再生が完全に拒否された場合のみ画像を表示
                         video.style.display = 'none';
                         if(endImage) endImage.style.display = 'block';
                     });
                 }
-        
-                // 動画終了時に画像へ切り替え
-                video.addEventListener('ended', function() {
-                    video.style.opacity = 0;
-                    setTimeout(() => {
-                        video.style.display = 'none';
-                        if(endImage) {
-                            endImage.style.display = 'block';
-                        }
-                    }, 500);
-                });
             }
 
             // Before/After Slider
@@ -203,4 +189,5 @@
 </body>
 
 </html>
+
 
