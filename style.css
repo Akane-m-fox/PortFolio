@@ -84,17 +84,16 @@ body {
 .form-wrapper { width: 100%; max-width: 900px; margin: 0 auto; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.6); }
 
 /* --- Responsive --- */
-/* --- 前半（PC用）は今のままでOK --- */
 
-/* --- 9. Responsive (スマホ・タブレット向け徹底修正) --- */
+/* --- 9. Responsive (スマホの余白とアーカイブの修正のみ) --- */
 @media (max-width: 1024px) {
     :root { 
-        --section-gap: 50px !important; 
+        --section-gap: 50px !important; /* PCの15vhからスマホ用に短縮 */
     }
 
-    /* 1. 三種類の動画の後の巨大な余白をカット */
+    /* 1. 三種類の後の巨大な空白をカット */
     .column { 
-        height: 180px !important; 
+        height: 180px !important; /* 40vhから固定値にして隙間を埋める */
         border-right: none; 
         border-bottom: 1px solid #111; 
     }
@@ -105,25 +104,25 @@ body {
 
     /* 2. ビフォーアフター(Works)の余白調整 */
     .content-block { 
-        padding: 50px 5% !important; 
+        padding: 50px 5% !important; /* 上下の広い余白をカット */
     }
 
     .works-split-container { 
         flex-direction: column !important; 
-        gap: 20px !important; 
+        gap: 20px !important; /* 画像と文字を近づける */
     }
 
-    /* 3. Furniture & Prop Works (アーカイブ) の崩れを完全修正 */
+    /* 3. Furniture & Prop Works (アーカイブ) が縦に並ぶのを防ぐ */
     .horizontal-scroll-wrapper {
         display: flex !important;
-        flex-wrap: nowrap !important; /* 横一列を強制 */
+        flex-wrap: nowrap !important; /* 縦並びを禁止 */
         overflow-x: auto !important;
         gap: 20px !important;
         padding: 10px 5% !important;
     }
 
     .scroll-item { 
-        flex: 0 0 280px !important; /* アイテムが縮むのを防止 */
+        flex: 0 0 280px !important; /* アイテムが縮まないように固定 */
         width: 280px !important;
         aspect-ratio: 16 / 9;
     }
