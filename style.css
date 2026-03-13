@@ -84,33 +84,49 @@ body {
 .form-wrapper { width: 100%; max-width: 900px; margin: 0 auto; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.6); }
 
 /* --- Responsive --- */
-/* --- 9. Responsive (修正後：余白カット & アーカイブ固定) --- */
+/* --- 前半（PC用）は今のままでOK --- */
+
+/* --- 9. Responsive (スマホ・タブレット向け徹底修正) --- */
 @media (max-width: 1024px) {
     :root { 
-        --section-gap: 50px; /* PC(15vh)から大幅縮小。これで全体の隙間が埋まります */
+        --section-gap: 50px !important; 
     }
 
-    /* 1. 三種類（Expertise）の後の余白をカット */
+    /* 1. 三種類の動画の後の巨大な余白をカット */
     .column { 
-        height: 160px; /* 高さを半分以下に絞り、間延びを解消 */
+        height: 180px !important; 
         border-right: none; 
         border-bottom: 1px solid #111; 
     }
     
-    /* 2. ビフォーアフター（Works）の隙間をカット */
-    .content-block { padding: var(--section-gap) 5%; }
-    .works-split-container { gap: 25px; } /* 画像と文字の距離を詰める */
-
-    /* 3. アーカイブ（Furniture）の崩れを修正 */
-    .scroll-item { 
-        flex: 0 0 auto !important; /* 絶対に縮ませない設定 */
-        width: 280px; /* スマホで見やすいサイズ */
+    .expertise-section {
+        margin-bottom: 0 !important;
     }
-    
+
+    /* 2. ビフォーアフター(Works)の余白調整 */
+    .content-block { 
+        padding: 50px 5% !important; 
+    }
+
+    .works-split-container { 
+        flex-direction: column !important; 
+        gap: 20px !important; 
+    }
+
+    /* 3. Furniture & Prop Works (アーカイブ) の崩れを完全修正 */
     .horizontal-scroll-wrapper {
-        gap: 20px;
-        padding: 10px 5%;
+        display: flex !important;
+        flex-wrap: nowrap !important; /* 横一列を強制 */
+        overflow-x: auto !important;
+        gap: 20px !important;
+        padding: 10px 5% !important;
     }
 
-    .scroll-arrow { display: none; } /* スマホはスワイプ操作のみに */
+    .scroll-item { 
+        flex: 0 0 280px !important; /* アイテムが縮むのを防止 */
+        width: 280px !important;
+        aspect-ratio: 16 / 9;
+    }
+
+    .scroll-arrow { display: none !important; }
 }
