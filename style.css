@@ -85,20 +85,9 @@ body {
 
 /* --- Responsive --- */
 @media (max-width: 1024px) {
-    /* アーカイブを横一列に固定し、スクロール可能にする */
-    .horizontal-scroll-wrapper {
-        display: flex !important;
-        flex-wrap: nowrap !important; /* 縦に折り返さない */
-        overflow-x: auto !important;  /* 横スクロールを許可 */
-        gap: 20px !important;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .scroll-item {
-        flex: 0 0 280px !important; /* 画像が縮むのを禁止 */
-        width: 280px !important;
-        aspect-ratio: 16 / 9;
-    }
-
-    .scroll-arrow { display: none; } /* スマホでは指で動かすので矢印を隠す */
+    .column-container { flex-direction: column; }
+    .column { height: 25vh; border-right: none; border-bottom: 1px solid #111; }
+    .works-split-container { flex-direction: column !important; gap: 50px; }
+    .scroll-arrow { display: none; }
+    .scroll-item { width: 320px; }
 }
