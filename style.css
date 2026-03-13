@@ -41,41 +41,10 @@ body {
 }
 
 /* --- 3. Hero --- */
-/* --- Hero Section 修正 --- */
-/* --- Hero Section 修正 --- */
-.hero { 
-    position: relative; 
-    width: 100%; 
-    height: 100vh; 
-    background: #000; 
-    overflow: hidden; 
-}
+.hero { position: relative; width: 100%; height: 100vh; overflow: hidden; background: #000; }
+.hero-video, #endImage { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+.hero-content { position: relative; z-index: 10; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; pointer-events: none; background: rgba(0,0,0,0.3); }
 
-.hero-video, #endImage { 
-    position: absolute; 
-    top: 50%; 
-    left: 50%; 
-    min-width: 100%; 
-    min-height: 100%; 
-    width: auto; 
-    height: auto; 
-    transform: translate(-50%, -50%); 
-    object-fit: cover; 
-    z-index: 1; 
-    opacity: 1 !important; /* 確実に表示させる */
-}
-
-.hero-content { 
-    position: relative; 
-    z-index: 10; 
-    width: 100%; 
-    height: 100%; 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-    pointer-events: none; 
-}
 .main-title { font-size: clamp(2rem, 8vw, 6rem); font-weight: 700; letter-spacing: 0.2em; text-align: center; line-height: 1; }
 .sub-title { font-size: clamp(0.8rem, 2vw, 1.1rem); opacity: 0.7; letter-spacing: 0.4em; margin-top: 20px; font-weight: 300; }
 
@@ -176,7 +145,4 @@ body {
     .scroll-arrow { display: none; } 
     .scroll-item { width: 320px; }
     .section-title { margin-bottom: 40px; }
-
 }
-
-
