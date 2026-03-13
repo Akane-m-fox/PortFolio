@@ -140,6 +140,10 @@
         window.onload = function() {
             const video = document.getElementById('heroVideo');
             if (video) video.playbackRate = 1.5;
+            // 強制再生の命令
+            video.play().catch(error => {
+                console.log("Autoplay was prevented. Click to play.");
+            });
 
             // Slider Logic
             const slider1 = document.getElementById('comparison-slider');
@@ -182,4 +186,5 @@
 </body>
 
 </html>
+
 
