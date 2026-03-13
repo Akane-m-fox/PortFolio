@@ -1,127 +1,205 @@
-@charset "utf-8";
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aknfox Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-/* Reset */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { 
-    font-family: 'Helvetica Neue', Arial, sans-serif; 
-    background: #000; 
-    color: #fff; 
-    overflow-x: hidden; 
-    line-height: 1.6; 
-}
+<body>
+    <section class="hero">
+        <video id="heroVideo" autoplay muted playsinline class="hero-video">
+            <source src="Video.webm" type="video/webm">
+            <source src="video.mp4" type="video/mp4">
+        </video>
+        <img id="endImage" src="1701.png" class="hero-video" style="display: none; object-fit: cover; z-index: -1;">
+        
+        <div class="hero-content">
+            <h1 class="main-title">PERSPECTIVE & SYNTHESIS</h1>
+            <p class="sub-title">パース・CG合成・フルCGアニメーション</p>
+        </div>
+    </section>
+    
+    <section class="expertise-section">
+        <div class="column-container">
+            <div class="column">
+                <div class="column-video-box">
+                    <video autoplay loop muted playsinline><source src="perspective.webm" type="video/webm"></video>
+                    <div class="text-overlay">
+                        <h3>Spatial<br>Perspective</h3>
+                        <p>パース・空間設計</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="column-video-box">
+                    <video autoplay loop muted playsinline><source src="composite.webm" type="video/webm"></video>
+                    <div class="text-overlay">
+                        <h3>Visual<br>Synthesis</h3>
+                        <p>CG合成・VFX</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="column-video-box">
+                    <video autoplay loop muted playsinline><source src="full-cg.webm" type="video/webm"></video>
+                    <div class="text-overlay">
+                        <h3>Full CG<br>Narrative</h3>
+                        <p>フルCGアニメーション</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-/* Hero */
-.hero { position: relative; width: 100%; height: 100vh; overflow: hidden; display: flex; justify-content: center; align-items: center; }
-.hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; }
-.main-title { font-size: clamp(2rem, 8vw, 5rem); letter-spacing: 0.1em; text-align: center; }
-.sub-title { text-align: center; opacity: 0.8; }
+    <section id="works" class="content-block">
+        <div class="works-split-container">
+            <div class="split-left">
+                <div class="comparison-slider">
+                    <div class="image-after">
+                        <img src="https://lh3.googleusercontent.com/d/1XfkKQKThlIJ-zlhm7731KRrz_Vuh-IKX" alt="Final Render">
+                    </div>
+                    <div class="image-before" id="before-box">
+                        <img src="https://lh3.googleusercontent.com/d/1kJ-jz-eXAGCNBGLXrzDdcBa5aZUqMuEi" alt="Raw Model">
+                    </div>
+                    <input type="range" min="0" max="100" value="50" class="slider" id="comparison-slider">
+                    <div class="slider-line"></div>
+                </div>
+            </div>
+            <div class="split-right">
+                <div class="tech-info">
+                    <span class="category-tag">Architectural Visualization</span>
+                    <h3>Visual Synthesis & Light</h3>
+                    <p>単なる3Dモデルに、現実世界の物理法則を流し込むプロセス。物理計算に基づいた光の挙動を追求しています。</p>
+                    <ul class="spec-list">
+                        <li><strong>Tool:</strong> Blender / Substance Painter</li>
+                        <li><strong>Focus:</strong> Photorealistic Lighting</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-/* Expertise Columns */
-.column-container { display: flex; width: 100%; }
-.column { flex: 1; position: relative; height: 35vh; overflow: hidden; }
-.column video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.4); transition: 0.5s; }
-.column:hover video { filter: brightness(0.7); }
-.text-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; text-align: center; pointer-events: none; }
+    <section class="content-block">
+        <div class="works-split-container is-reverse">
+            <div class="split-left">
+                <div class="single-image-box">
+                    <img src="https://drive.google.com/thumbnail?id=1f38xH4plJU3Wy6VRXl6l5ZU1eTp9bHfC&sz=w1000" alt="Final Render">
+                </div>
+            </div>
+            <div class="split-right">
+                <div class="tech-info">
+                    <span class="category-tag">Next Work</span>
+                    <h3>High-Resolution Interior</h3>
+                    <p>完成された作品の静止画クオリティを強調します。ディテールへのこだわりをじっくりと鑑賞いただけます。</p>
+                    <ul class="spec-list">
+                        <li><strong>Tool:</strong> Blender / Substance Painter</li>
+                        <li><strong>Focus:</strong> Photorealistic Lighting</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-/* Content Block */
-.content-block { padding: 15vh 5%; background: #050505; }
-.works-split-container { 
-    display: flex; 
-    max-width: 1200px; 
-    margin: 0 auto; 
-    gap: 60px; 
-    align-items: center; 
-}
+    <section class="archive-section">
+        <div class="container"><h2>Furniture & Prop Works</h2></div>
+        <div class="horizontal-scroll-wrapper" id="loop-scroll">
+            <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1qf5NtajTEx9rbH7WTRuJGPZ1JiKmPFKY"></div>
+            <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1vKIT5l0ZZbJbPhEMy3roedz3l4-QaFs7"></div>
+            <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/101oQNlXTB8JDGJ2EmAeXa_oGR9DtjkfU"></div>
+            <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1tqycntaqk2NlZFC4bMDb36xv0D656Bk3"></div>
+            <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1ZhOoVXw_ftBFUo6mf0or7HzqApZ7EFop"></div>
+            <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1T-EYA6gcFgf2KN4Svxhz5tFXYjpkvd7e"></div>
+            <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1qf5NtajTEx9rbH7WTRuJGPZ1JiKmPFKY"></div>
+            <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1vKIT5l0ZZbJbPhEMy3roedz3l4-QaFs7"></div>
+            <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/101oQNlXTB8JDGJ2EmAeXa_oGR9DtjkfU"></div>
+            <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1tqycntaqk2NlZFC4bMDb36xv0D656Bk3"></div>
+            <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1ZhOoVXw_ftBFUo6mf0or7HzqApZ7EFop"></div>
+            <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1T-EYA6gcFgf2KN4Svxhz5tFXYjpkvd7e"></div>
+        </div>
+    </section>
 
-@media (min-width: 1025px) {
-    .is-reverse { flex-direction: row-reverse; }
-}
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>Inquiry Form</h2>
+            <div class="form-wrapper">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfBzYKNTDZu-GB29BNS1w9mReioDlOJLt__ZR_KxLa12RaoSA/viewform?embedded=true" width="100%" height="800" frameborder="0">読み込んでいます…</iframe>
+            </div>
+        </div>
+    </section>
 
-.split-left { flex: 2; min-width: 0; position: relative; }
-.split-right { flex: 1; padding: 20px; }
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('heroVideo');
+            const endImage = document.getElementById('endImage');
 
-/* Slider Components - 修正版 */
-.comparison-slider { 
-    position: relative; 
-    width: 100%; 
-    aspect-ratio: 16 / 9; 
-    overflow: hidden; 
-    border: 1px solid #222; 
-}
+            // 1. Video Logic
+            if (video) {
+                video.playbackRate = 1.5;
+                video.play().catch(() => console.log("Auto-play blocked"));
+                video.addEventListener('ended', function() {
+                    video.style.display = 'none';
+                    if(endImage) endImage.style.display = 'block';
+                });
+            }
 
-.image-after { 
-    position: absolute; 
-    top: 0; left: 0; width: 100%; height: 100%; 
-}
-.image-after img { width: 100%; height: 100%; object-fit: cover; }
+            // 2. Slider Logic (Improved)
+            // index.html の script 部分
 
-#before-box {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 50%; /* JSで制御 */
-    overflow: hidden; /* ★重要：ここが「窓」になる */
-    z-index: 2;
-}
+			const slider = document.getElementById('comparison-slider');
+			const beforeBox = document.getElementById('before-box');
 
-#before-box img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    /* ★重要：親の .comparison-slider と同じ横幅を維持させる */
-    width: calc(1200px * 2 / 3); /* デスクトップ時の概算 */
-    min-width: 100%; /* 親コンテナの100%幅を常に確保 */
-    object-fit: cover;
-    max-width: none;
-    pointer-events: none;
-}
+			if (slider && beforeBox) {
+				slider.addEventListener('input', (e) => {
+					let val = e.target.value;
 
-.slider { 
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-    background: transparent; z-index: 10; cursor: ew-resize; 
-    appearance: none; -webkit-appearance: none; 
-}
+					// 端（0%と100%）でピタッと止める補正
+					if (val > 98) val = 100;
+					if (val < 2) val = 0;
 
-.slider-line { 
-    position: absolute; top: 0; left: 50%; 
-    width: 2px; height: 100%; background: #fff; z-index: 3; 
-    pointer-events: none; transform: translateX(-50%);
-}
+					const percent = val + '%';
 
-/* Single Image Box */
-.single-image-box { width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid #222; }
-.single-image-box img { width: 100%; height: 100%; object-fit: cover; }
+					// 1. 直接 width を変更（これで動くようになる）
+					beforeBox.style.width = percent;
 
-/* Horizontal Scroll */
-.archive-section { padding: 100px 0; }
-.archive-section .container { text-align: center; margin-bottom: 40px; }
-.archive-section h2 { letter-spacing: 0.1em; font-size: clamp(1.5rem, 5vw, 2.5rem); }
+					// 2. もしCSS変数を使っているなら予備で更新
+					document.documentElement.style.setProperty('--exposure', percent);
 
-.horizontal-scroll-wrapper { 
-    display: flex; 
-    overflow-x: auto; 
-    gap: 40px; 
-    padding: 20px 5%; 
-    scrollbar-width: none; 
-    cursor: grab;
-}
-.horizontal-scroll-wrapper::-webkit-scrollbar { display: none; }
-.scroll-item { flex: 0 0 auto; width: 450px; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid #222; transition: 0.3s; }
-.scroll-item:hover { transform: translateY(-10px); border-color: #fff; }
-.scroll-item img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+					// 3. 白い線の位置も同期（もしHTMLに slider-line があれば）
+					const line = document.querySelector('.slider-line');
+					if(line) line.style.left = percent;
+				});
+			}
+						// 3. Drag Scroll & Loop Logic
+            const scrollWrapper = document.getElementById('loop-scroll');
+            if (scrollWrapper) {
+                let isDown = false, startX, scrollLeft;
+                scrollWrapper.addEventListener('mousedown', (e) => {
+                    isDown = true;
+                    scrollWrapper.style.cursor = 'grabbing';
+                    startX = e.pageX - scrollWrapper.offsetLeft;
+                    scrollLeft = scrollWrapper.scrollLeft;
+                });
+                const stop = () => { isDown = false; scrollWrapper.style.cursor = 'grab'; };
+                scrollWrapper.addEventListener('mouseleave', stop);
+                scrollWrapper.addEventListener('mouseup', stop);
+                scrollWrapper.addEventListener('mousemove', (e) => {
+                    if (!isDown) return;
+                    e.preventDefault();
+                    const x = e.pageX - scrollWrapper.offsetLeft;
+                    const walk = (x - startX) * 2;
+                    scrollWrapper.scrollLeft = scrollLeft - walk;
+                });
+                scrollWrapper.addEventListener('scroll', () => {
+                    const half = scrollWrapper.scrollWidth / 2;
+                    if (scrollWrapper.scrollLeft >= half) scrollWrapper.scrollLeft = 1;
+                    if (scrollWrapper.scrollLeft <= 0) scrollWrapper.scrollLeft = half - 1;
+                });
+            }
+        });
+    </script>
+</body>
+</html>
 
-/* Contact */
-.contact-section { padding: 100px 5%; text-align: center; background: #000; border-top: 1px solid #222; }
-.form-wrapper { max-width: 800px; margin: 40px auto; background: #fff; border-radius: 8px; overflow: hidden; }
 
-/* Mobile Optimization */
-@media (max-width: 1024px) {
-    .column-container { flex-direction: column; }
-    .column { height: 25vh; }
-    .works-split-container { flex-direction: column; gap: 40px; padding: 0 5%; }
-    .split-left, .split-right { width: 100%; text-align: center; }
-    #before-box img { width: 90vw; } /* モバイル時の幅調整 */
-    .scroll-item { width: 300px; }
-}
