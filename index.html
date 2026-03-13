@@ -152,6 +152,11 @@
                     video.playbackRate = 1.5;
                     video.play();
                 }
+                if (video) {
+                    video.addEventListener('ended', function() {
+                        video.style.display = 'none';    // 動画を隠す
+                        endImage.style.display = 'block'; // 画像を表示する
+                    });
         
                 // 3. GitHub Pages特有の「止まったまま」を防ぐ強制リロード
                 setTimeout(() => {
@@ -202,6 +207,7 @@
 </body>
 
 </html>
+
 
 
 
