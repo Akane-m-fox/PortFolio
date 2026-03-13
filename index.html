@@ -48,8 +48,8 @@
         <div class="works-split-container">
             <div class="split-left">
                 <div class="comparison-slider">
-                    <div class="image-after"><img src="https://drive.google.com/thumbnail?id=1Psqi82FzD6G_6z1M-Bq6vX0y9n9ZJv_x&sz=w2000" alt="Final Render"></div>
-                    <div class="image-before" id="before-box"><img src="https://drive.google.com/thumbnail?id=1RkQ82FzD6G_6z1M-Bq6vX0y9n9ZJv_x&sz=w2000" alt="Raw Model"></div>
+                    <div class="image-after"><img src="https://lh3.googleusercontent.com/d/1XfkKQKThlIJ-zlhm7731KRrz_Vuh-IKX" alt="Final Render"></div>
+                    <div class="image-before" id="before-box"><img src="https://lh3.googleusercontent.com/d/1kJ-jz-eXAGCNBGLXrzDdcBa5aZUqMuEi" alt="Raw Model"></div>
                     <input type="range" min="0" max="100" value="50" class="slider" id="comparison-slider">
                     <div class="slider-line"></div>
                 </div>
@@ -59,6 +59,10 @@
                     <span class="category-tag">Architectural Visualization</span>
                     <h3>Visual Synthesis & Light</h3>
                     <p>物理法則に基づいた光の挙動を追求し、デジタル空間に圧倒的な実在感を構築します。</p>
+                    <ul class="spec-list">
+                        <li><strong>Software</strong> Blender / Substance Painter</li>
+                        <li><strong>Focus</strong> Photorealistic Lighting</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -71,9 +75,11 @@
                 <button class="scroll-arrow left" id="arrow-left">❮</button>
                 <button class="scroll-arrow right" id="arrow-right">❯</button>
                 <div class="horizontal-scroll-wrapper" id="loop-scroll">
-                    <div class="scroll-item"><img src="https://drive.google.com/thumbnail?id=1f38xH4plJU3Wy6VRXl6l5ZU1eTp9bHfC&sz=w1000"></div>
-                    <div class="scroll-item"><img src="https://drive.google.com/thumbnail?id=1f38xH4plJU3Wy6VRXl6l5ZU1eTp9bHfC&sz=w1000"></div>
-                    <div class="scroll-item"><img src="https://drive.google.com/thumbnail?id=1f38xH4plJU3Wy6VRXl6l5ZU1eTp9bHfC&sz=w1000"></div>
+                    <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1qf5NtajTEx9rbH7WTRuJGPZ1JiKmPFKY"></div>
+                    <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1vKIT5l0ZZbJbPhEMy3roedz3l4-QaFs7"></div>
+                    <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/101oQNlXTB8JDGJ2EmAeXa_oGR9DtjkfU"></div>
+                    <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1tqycntaqk2NlZFC4bMDb36xv0D656Bk3"></div>
+                    <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1qf5NtajTEx9rbH7WTRuJGPZ1JiKmPFKY"></div>
                 </div>
             </div>
         </div>
@@ -91,23 +97,43 @@
     <script>
         window.onload = function() {
             const video = document.getElementById('heroVideo');
+            const endImage = document.getElementById('endImage');
+
             if (video) {
+                // 強制リロードと再生設定（MP4対策）
                 const playVideo = () => {
                     video.playbackRate = 1.5;
-                    video.play().then(() => { video.style.zIndex = "2"; }).catch(e => console.log("Play blocked"));
+                    video.play().then(() => {
+                        video.style.zIndex = "2"; // 動いたら画像より前に出す
+                    }).catch(e => console.log("Play blocked:", e));
                 };
+
+                // 準備ができたら再生
                 video.addEventListener('canplay', playVideo, { once: true });
-                if (video.readyState >= 3) playVideo();
-                setTimeout(() => { if (video.paused) playVideo(); }, 1000);
+
+                // すでに読み込み済みのキャッシュ対策
+                if (video.readyState >= 3) {
+                    playVideo();
+                }
+
+                // GitHub Pages特有の停止対策
+                setTimeout(() => {
+                    if (video.paused) {
+                        video.load();
+                        playVideo();
+                    }
+                }, 1000);
             }
 
-            // Slider Logic
+            // Slider Logic (最新のCSS変数 --exposure-num に対応)
             const slider = document.getElementById('comparison-slider');
             const beforeBox = document.getElementById('before-box');
+            const line = document.querySelector('.slider-line');
             if (slider && beforeBox) {
                 const update = (val) => {
                     beforeBox.style.width = val + '%';
                     document.documentElement.style.setProperty('--exposure-num', val);
+                    if(line) line.style.left = val + '%';
                 };
                 slider.addEventListener('input', (e) => update(e.target.value));
                 update(slider.value);
@@ -115,15 +141,24 @@
 
             // Archive Scroll
             const scrollWrapper = document.getElementById('loop-scroll');
+            const arrowLeft = document.getElementById('arrow-left');
+            const arrowRight = document.getElementById('arrow-right');
             if (scrollWrapper) {
+                if(arrowLeft) arrowLeft.addEventListener('click', () => scrollWrapper.scrollBy({ left: -500, behavior: 'smooth' }));
+                if(arrowRight) arrowRight.addEventListener('click', () => scrollWrapper.scrollBy({ left: 500, behavior: 'smooth' }));
+
                 let isDown = false, startX, scrollLeft;
                 scrollWrapper.addEventListener('mousedown', (e) => {
-                    isDown = true; startX = e.pageX - scrollWrapper.offsetLeft; scrollLeft = scrollWrapper.scrollLeft;
+                    isDown = true;
+                    scrollWrapper.style.cursor = 'grabbing';
+                    startX = e.pageX - scrollWrapper.offsetLeft;
+                    scrollLeft = scrollWrapper.scrollLeft;
                 });
-                const stop = () => { isDown = false; };
-                window.addEventListener('mouseup', stop);
+                const stop = () => { isDown = false; scrollWrapper.style.cursor = 'grab'; };
+                scrollWrapper.addEventListener('mouseleave', stop);
+                scrollWrapper.addEventListener('mouseup', stop);
                 scrollWrapper.addEventListener('mousemove', (e) => {
-                    if (!isDown) return; e.preventDefault();
+                    if (!isDown) return;
                     const x = e.pageX - scrollWrapper.offsetLeft;
                     scrollWrapper.scrollLeft = scrollLeft - (x - startX) * 2;
                 });
