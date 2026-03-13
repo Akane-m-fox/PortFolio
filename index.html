@@ -9,11 +9,9 @@
 
 <body>
     <section class="hero">
-        <video id="heroVideo" autoplay muted playsinline loop class="hero-video">
-            <source src="video.mp4" type="video/mp4">
-            <source src="Video.webm" type="video/webm">
+        <video id="heroVideo" autoplay muted playsinline loop poster="1701.jpeg" class="hero-video">
         </video>
-        <img id="endImage" src="1701.png" class="hero-video" style="display: block; object-fit: cover; z-index: 1;">
+        <img id="endImage" src="1701.jpeg" class="hero-video" style="display: block; object-fit: cover; z-index: 1;">
         
         <div class="hero-content">
             <h1 class="main-title">PERSPECTIVE & SYNTHESIS</h1>
@@ -100,7 +98,15 @@
             const endImage = document.getElementById('endImage');
 
             if (video) {
-                // 強制リロードと再生設定（MP4対策）
+                // 1. デバイス判定（768px以下はVideoS.webm）
+                const videoSrc = window.innerWidth <= 768 ? 'VideoS.webm' : 'Video.webm';
+                
+                // source要素を作成して追加
+                const source = document.createElement('source');
+                source.src = videoSrc;
+                source.type = 'video/webm';
+                video.appendChild(source);
+
                 const playVideo = () => {
                     video.playbackRate = 1.5;
                     video.play().then(() => {
@@ -111,12 +117,12 @@
                 // 準備ができたら再生
                 video.addEventListener('canplay', playVideo, { once: true });
 
-                // すでに読み込み済みのキャッシュ対策
+                // キャッシュ対策
                 if (video.readyState >= 3) {
                     playVideo();
                 }
 
-                // GitHub Pages特有の停止対策
+                // 強制ロード（GitHub/DW対策）
                 setTimeout(() => {
                     if (video.paused) {
                         video.load();
@@ -125,7 +131,7 @@
                 }, 1000);
             }
 
-            // Slider Logic (最新のCSS変数 --exposure-num に対応)
+            // Slider Logic
             const slider = document.getElementById('comparison-slider');
             const beforeBox = document.getElementById('before-box');
             const line = document.querySelector('.slider-line');
@@ -144,8 +150,8 @@
             const arrowLeft = document.getElementById('arrow-left');
             const arrowRight = document.getElementById('arrow-right');
             if (scrollWrapper) {
-                if(arrowLeft) arrowLeft.addEventListener('click', () => scrollWrapper.scrollBy({ left: -500, behavior: 'smooth' }));
-                if(arrowRight) arrowRight.addEventListener('click', () => scrollWrapper.scrollBy({ left: 500, behavior: 'smooth' }));
+                if(arrowLeft) arrowLeft.addEventListener('click', () => scrollWrapper.scrollBy({ left: -600, behavior: 'smooth' }));
+                if(arrowRight) arrowRight.addEventListener('click', () => scrollWrapper.scrollBy({ left: 600, behavior: 'smooth' }));
 
                 let isDown = false, startX, scrollLeft;
                 scrollWrapper.addEventListener('mousedown', (e) => {
