@@ -120,15 +120,37 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Hero Video
             const video = document.getElementById('heroVideo');
+            const endImage = document.getElementById('endImage');
+        
             if (video) {
-                video.muted = true; 
-                video.play().catch(() => console.log("Video auto-play blocked"));
+                video.muted = true;
+                
+                // 動画の再生を試みる
+                const startVideo = () => {
+                    video.play().catch(error => {
+                        console.log("再生がブロックされました。クリックで再生開始の設定が必要です。", error);
+                        // 再生失敗時は即座に画像を表示させる
+                        video.style.display = 'none';
+                        if(endImage) endImage.style.display = 'block';
+                    });
+                };
+        
+                // メタデータ読み込み完了時に再生開始
+                video.addEventListener('loadedmetadata', startVideo);
+        
+                // 動画終了時の処理
                 video.addEventListener('ended', function() {
-                    video.style.display = 'none';
-                    const endImage = document.getElementById('endImage');
-                    if(endImage) endImage.style.display = 'block';
+                    video.style.transition = "opacity 1s";
+                    video.style.opacity = 0;
+                    setTimeout(() => {
+                        video.style.display = 'none';
+                        if(endImage) {
+                            endImage.style.display = 'block';
+                            endImage.style.opacity = 0;
+                            setTimeout(() => endImage.style.opacity = 1, 50);
+                        }
+                    }, 1000);
                 });
             }
 
@@ -178,4 +200,5 @@
         });
     </script>
 </body>
+
 </html>
