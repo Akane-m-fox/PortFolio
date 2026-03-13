@@ -9,16 +9,17 @@
 
 <body>
     <section class="hero">
-        <video id="heroVideo" autoplay muted playsinline class="hero-video">
-            <source src="Video.webm" type="video/webm">
-            <source src="video.mp4" type="video/mp4">
-        </video>
-        <img id="endImage" src="1701.png" class="hero-video" style="display: none; z-index: 1;">
-        <div class="hero-content">
-            <h1 class="main-title">PERSPECTIVE & SYNTHESIS</h1>
-            <p class="sub-title">Architecture • Visual Effect • CG Animation</p>
-        </div>
-    </section>
+    <video id="heroVideo" autoplay muted playsinline loop class="hero-video" style="opacity: 0;">
+        <source src="Video.webm" type="video/webm">
+        <source src="video.mp4" type="video/mp4">
+    </video>
+    <img id="endImage" src="1701.png" class="hero-video" style="display: none; object-fit: cover; z-index: 1;">
+    
+    <div class="hero-content">
+        <h1 class="main-title">PERSPECTIVE & SYNTHESIS</h1>
+        <p class="sub-title">Architecture • Visual Effect • CG Animation</p>
+    </div>
+</section>
     
     <section class="expertise-section">
         <div class="column-container">
@@ -124,33 +125,33 @@
             const endImage = document.getElementById('endImage');
         
             if (video) {
+                // ミュートを確実にして再生を開始する
                 video.muted = true;
                 
-                // 動画の再生を試みる
-                const startVideo = () => {
-                    video.play().catch(error => {
-                        console.log("再生がブロックされました。クリックで再生開始の設定が必要です。", error);
-                        // 再生失敗時は即座に画像を表示させる
+                // 動画が再生可能になったら表示する
+                video.oncanplay = () => {
+                    video.style.opacity = 1;
+                };
+        
+                const promise = video.play();
+                if (promise !== undefined) {
+                    promise.catch(error => {
+                        // 自動再生がブロックされた場合は即座に画像に切り替える
+                        console.log("Auto-play blocked, showing fallback image");
                         video.style.display = 'none';
                         if(endImage) endImage.style.display = 'block';
                     });
-                };
+                }
         
-                // メタデータ読み込み完了時に再生開始
-                video.addEventListener('loadedmetadata', startVideo);
-        
-                // 動画終了時の処理
+                // 動画終了時に画像へ切り替え
                 video.addEventListener('ended', function() {
-                    video.style.transition = "opacity 1s";
                     video.style.opacity = 0;
                     setTimeout(() => {
                         video.style.display = 'none';
                         if(endImage) {
                             endImage.style.display = 'block';
-                            endImage.style.opacity = 0;
-                            setTimeout(() => endImage.style.opacity = 1, 50);
                         }
-                    }, 1000);
+                    }, 500);
                 });
             }
 
@@ -202,3 +203,4 @@
 </body>
 
 </html>
+
