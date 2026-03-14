@@ -135,30 +135,63 @@ body {
 
 /* --- 9. Responsive --- */
 @media (max-width: 1024px) {
-    :root { --section-gap: 10vh; }
+    :root { --section-gap: 8vh; }
     
-    /* 1. トップの動画の縦幅を半分（50vh）に変更 */
     .hero { height: 50vh; }
+    .sub-title { text-align: center; text-indent: 0.4em; padding: 0 5%; line-height: 1.6; }
 
-    /* 2. サブタイトルの偏りを修正（中央揃え ＋ 字間のズレ補正） */
-    .sub-title { 
-        text-align: center; 
-        text-indent: 0.4em; 
-        padding: 0 5%; 
-        line-height: 1.6; 
+    /* ★セクション間の隙間を大幅に詰める */
+    .content-block { padding: 3vh 5%; }
+    #works.content-block { padding-bottom: 3vh; }
+    .archive-section { padding: 3vh 0; }
+
+    /* ★要素の分解と並べ替え */
+    .works-split-container { 
+        display: flex; 
+        flex-direction: column; 
+        max-width: 600px; 
+        margin: 0 auto; 
+        gap: 0 !important; 
     }
+    
+    .split-right, .tech-info { display: contents; }
+    
+    /* ★最大の原因を修正！ PC版の「1300px」設定を強制リセットし、縦の巨大化を防ぐ */
+    .split-left { 
+        order: 3; 
+        flex: none !important; /* <- ここが隙間バグの特効薬です */
+        width: 100%; 
+        padding: 0; 
+        margin: 15px 0; /* 画像の上下にだけ美しい15pxの隙間を確保 */
+    }
+    
+    /* 1番目（上）: カテゴリタグ */
+    .category-tag { order: 1; text-align: left; margin-bottom: 5px; }
+    
+    /* 2番目（画像の上）: タイトル */
+    .tech-info h3 { 
+        order: 2; text-align: left; margin-bottom: 0; line-height: 1.2;
+        font-size: clamp(1.3rem, 4vw, 1.5rem);
+    }
+    
+    /* 4番目（画像の下）: 説明文 */
+    .tech-info p { 
+        order: 4; text-align: left; margin: 0 0 15px 0; color: #aaa;
+        font-size: 0.8rem;
+    }
+    
+    /* 5番目（一番下）: リスト */
+    .spec-list { order: 5; padding-top: 15px; border-top: 1px solid #222; margin-bottom: 0; }
+    .spec-list li { 
+        justify-content: flex-start; margin-bottom: 8px;
+        font-size: 0.75rem;
+    }
+    .spec-list li strong { width: 95px; font-size: 0.65rem; }
 
-    /* ★追加: Furniture & Prop Works の上下の隙間を半分にする */
-    .archive-section { padding: 5vh 0; }
-
-    /* 既存のスマホ用レイアウト設定 */
+    /* その他の既存レイアウト設定 */
     .column-container { flex-direction: column; }
     .column { height: 25vh; border-right: none; border-bottom: 1px solid #111; }
-    .works-split-container { flex-direction: column !important; gap: 50px; }
-    .split-left, .split-right { flex: none; width: 100%; max-width: 600px; text-align: center; }
-    .tech-info p { margin: 0 auto 30px auto; }
-    .spec-list li { justify-content: center; }
     .scroll-arrow { display: none; } 
     .scroll-item { width: 320px; }
-    .section-title { margin-bottom: 40px; }
+    .section-title { margin-bottom: 30px; }
 }
