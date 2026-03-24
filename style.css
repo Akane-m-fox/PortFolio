@@ -48,6 +48,105 @@ body {
 .main-title { font-size: clamp(2rem, 8vw, 6rem); font-weight: 700; letter-spacing: 0.2em; text-align: center; line-height: 1; }
 .sub-title { font-size: clamp(0.8rem, 2vw, 1.1rem); opacity: 0.7; letter-spacing: 0.4em; margin-top: 20px; font-weight: 300; }
 
+/* --- 3.5. Scroll Rotate Section --- */
+.chara-scroll-rotate-section {
+    position: relative;
+    width: 100%;
+    height: 400vh !important; 
+    display: block !important;
+    background: #000;
+    overflow: visible !important;
+}
+
+.chara-section-header {
+    position: absolute;
+    top: 8vh;
+    left: 0;
+    width: 100%;
+    z-index: 101;
+    text-align: center;
+    pointer-events: none; /* 操作の邪魔にならないようにする */
+}
+
+.chara-rotate-sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#chara-rotate-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.rotation-text-container {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 100; pointer-events: none;
+}
+
+.rot-text-block {
+    position: absolute;
+    max-width: 500px;
+    padding: 50px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(20, 30, 40, 0.85), rgba(40, 20, 30, 0.85));
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8), 
+                0 0 15px rgba(255, 154, 158, 0.2), 
+                0 0 15px rgba(161, 196, 253, 0.2);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    opacity: 0;
+    transition: opacity 0.8s, transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.rot-text-block:nth-child(1) {
+    top: 25%; left: 20%; text-align: left;
+    transform: translateX(-100px) scale(0.8) rotateY(-15deg);
+}
+.rot-text-block:nth-child(1).active {
+    opacity: 1; transform: translateX(0) scale(1) rotateY(0deg);
+}
+
+.rot-text-block:nth-child(2) {
+    bottom: 25%; right: 20%; text-align: right;
+    transform: translateX(100px) scale(0.8) rotateY(15deg);
+}
+.rot-text-block:nth-child(2).active {
+    opacity: 1; transform: translateX(0) scale(1) rotateY(0deg);
+}
+
+.rot-text-block::before, .rot-text-block::after {
+    content: ''; position: absolute; font-family: sans-serif;
+    font-size: 1.5rem; color: rgba(255, 255, 255, 0.3);
+    transition: transform 0.8s ease-in-out;
+}
+.rot-text-block::before { content: '🍃'; top: 20px; left: 20px; }
+.rot-text-block::after { content: '🐾'; bottom: 20px; right: 20px; }
+.rot-text-block.active::before { transform: rotate(15deg) scale(1.1); color: #a1c4fd; }
+.rot-text-block.active::after { transform: rotate(-15deg) scale(1.1); color: #ff9a9e; }
+
+.rot-text-block h2 { 
+    font-family: 'Helvetica Neue', 'Arial', sans-serif;
+    font-size: 2.2rem; letter-spacing: 0.15em; font-weight: 200; margin: 15px 0; 
+    background: linear-gradient(135deg, #fff 0%, #a1c4fd 40%, #ff9a9e 60%, #fff 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+}
+
+.rot-text-block .category-tag {
+    font-family: monospace; font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5); letter-spacing: 0.3em;
+}
+
+
 /* --- 4. Expertise (Three Columns) --- */
 .column-container { display: flex; width: 100%; border-bottom: 1px solid #111; }
 .column { flex: 1; position: relative; height: 40vh; overflow: hidden; border-right: 1px solid #111; }
@@ -139,6 +238,49 @@ body {
     
     .hero { height: 50vh; }
     .sub-title { text-align: center; text-indent: 0.4em; padding: 0 5%; line-height: 1.6; }
+
+    /* ★スマホでのセクションタイトル位置調整 */
+    .chara-section-header {
+        top: 4vh;
+    }
+
+    /* ★動画エリアを全画面に戻す（縦長動画対応） */
+    .chara-rotate-sticky {
+        height: 100vh;
+        top: 0;
+    }
+
+    /* ★縦長動画を画面内に全体表示して見切れを防ぐ */
+    #chara-rotate-video {
+        object-fit: contain;
+        object-position: center center;
+    }
+
+    /* ★スクロールテキストのレスポンシブ調整 */
+    .rot-text-block { 
+        width: 90%; 
+        max-width: none; 
+        padding: 25px; 
+        border-radius: 15px;
+    }
+    
+    /* スマホでは横からの3D回転をやめ、下からふんわり浮き上がる自然なアニメーションに変更 */
+    .rot-text-block:nth-child(1) { 
+        top: 15%; left: 5%; 
+        transform: translateY(40px) scale(0.95); 
+    }
+    .rot-text-block:nth-child(1).active { 
+        transform: translateY(0) scale(1); 
+    }
+    .rot-text-block:nth-child(2) { 
+        bottom: 15%; right: 5%; 
+        transform: translateY(40px) scale(0.95); 
+    }
+    .rot-text-block:nth-child(2).active { 
+        transform: translateY(0) scale(1); 
+    }
+    .rot-text-block h2 { font-size: 1.4rem; margin: 10px 0; }
+    .rot-text-block p { font-size: 0.85rem; line-height: 1.6; margin: 0; }
 
     /* ★セクション間の隙間を大幅に詰める */
     .content-block { padding: 3vh 5%; }

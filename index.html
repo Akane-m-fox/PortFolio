@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aknfox Portfolio</title>
-	<link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -23,13 +22,15 @@
             <p class="sub-title">Architecture • Visual Effect • CG Animation</p>
         </div>
     </section>
-    
+
     <section class="expertise-section">
         <div class="column-container">
             <div class="column">
                 <div class="column-video-box">
-                    <video autoplay loop muted playsinline poster="perspective-poster.jpg">
+                    <video class="lazy-video" loop muted playsinline preload="none" poster="perspective-poster.jpg">
+                        <source media="(max-width: 1024px)" src="perspectiveS.mp4" type="video/mp4">
                         <source media="(max-width: 1024px)" src="perspectiveS.webm" type="video/webm">
+                        <source src="perspective.mp4" type="video/mp4">
                         <source src="perspective.webm" type="video/webm">
                     </video>
                     <div class="text-overlay"><h3>Spatial<br>Perspective</h3><p>パース・空間設計</p></div>
@@ -37,8 +38,10 @@
             </div>
             <div class="column">
                 <div class="column-video-box">
-                    <video autoplay loop muted playsinline poster="composite-poster.jpg">
+                    <video class="lazy-video" loop muted playsinline preload="none" poster="composite-poster.jpg">
+                        <source media="(max-width: 1024px)" src="compositeS.mp4" type="video/mp4">
                         <source media="(max-width: 1024px)" src="compositeS.webm" type="video/webm">
+                        <source src="composite.mp4" type="video/mp4">
                         <source src="composite.webm" type="video/webm">
                     </video>
                     <div class="text-overlay"><h3>Visual<br>Synthesis</h3><p>CG合成・VFX</p></div>
@@ -46,11 +49,41 @@
             </div>
             <div class="column">
                 <div class="column-video-box">
-                    <video autoplay loop muted playsinline poster="full-cg-poster.jpg">
+                    <video class="lazy-video" loop muted playsinline preload="none" poster="full-cg-poster.jpg">
+                        <source media="(max-width: 1024px)" src="full-cgS.mp4" type="video/mp4">
                         <source media="(max-width: 1024px)" src="full-cgS.webm" type="video/webm">
+                        <source src="full-cg.mp4" type="video/mp4">
                         <source src="full-cg.webm" type="video/webm">
                     </video>
                     <div class="text-overlay"><h3>Full CG<br>Narrative</h3><p>フルCGアニメーション</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <section id="chara-scroll-rotate" class="chara-scroll-rotate-section">
+        <div class="chara-rotate-sticky">
+            <!-- ★ セクションタイトルを追加 -->
+            <div class="chara-section-header">
+                <span class="category-tag" style="text-align: center; margin-bottom: 10px;">Original 3D Model</span>
+                <h2 class="section-title" style="margin-bottom: 0; letter-spacing: 0.3em;">CHARACTER DESIGN</h2>
+            </div>
+
+            <!-- ★ preload="auto" と autoplay を追加してスマホでの強制ロードを促す -->
+            <video id="chara-rotate-video" muted playsinline autoplay preload="auto">
+                <source media="(max-width: 1024px)" src="chara_rotate_sequenceS.mp4" type="video/mp4">
+                <source src="chara_rotate_sequence.mp4" type="video/mp4">
+            </video>
+            <div class="rotation-text-container">
+                <div class="rot-text-block">
+                    <span class="category-tag">01. Silhouette</span>
+                    <h2>PRISTINE FORM</h2>
+                    <p>全方位から見て破綻のないシルエット。滑らかなエッジフローを構築しています。</p>
+                </div>
+                <div class="rot-text-block">
+                    <span class="category-tag">02. Texture</span>
+                    <h2>SUBTLE DETAIL</h2>
+                    <p>PBRベースでありながらイラストの温かみを感じる質感を追求しました。</p>
                 </div>
             </div>
         </div>
@@ -60,8 +93,8 @@
         <div class="works-split-container">
             <div class="split-left">
                 <div class="comparison-slider">
-                    <div class="image-after"><img src="https://lh3.googleusercontent.com/d/1XfkKQKThlIJ-zlhm7731KRrz_Vuh-IKX" alt="Final Render"></div>
-                    <div class="image-before" id="before-box"><img src="https://lh3.googleusercontent.com/d/1kJ-jz-eXAGCNBGLXrzDdcBa5aZUqMuEi" alt="Raw Model"></div>
+                    <div class="image-after"><img src="https://lh3.googleusercontent.com/d/1XfkKQKThlIJ-zlhm7731KRrz_Vuh-IKX" alt="Final Render" loading="lazy"></div>
+                    <div class="image-before" id="before-box"><img src="https://lh3.googleusercontent.com/d/1kJ-jz-eXAGCNBGLXrzDdcBa5aZUqMuEi" alt="Raw Model" loading="lazy"></div>
                     <input type="range" min="0" max="100" value="50" class="slider" id="comparison-slider">
                     <div class="slider-line"></div>
                 </div>
@@ -86,7 +119,7 @@
                 <div class="single-image-box">
                     <picture>
                         <source media="(max-width: 1024px)" srcset="3.4S.jpg">
-                        <img src="3.4.jpg" alt="Japanese Modern Interior">
+                        <img src="3.4.jpg" alt="Japanese Modern Interior" loading="lazy">
                     </picture>
                 </div>
             </div>
@@ -110,7 +143,7 @@
                 <div class="single-image-box">
                     <picture>
                         <source media="(max-width: 1024px)" srcset="Sample4S.jpg">
-                        <img src="Sample4.jpg" alt="Winter Landscape Architecture">
+                        <img src="Sample4.jpg" alt="Winter Landscape Architecture" loading="lazy">
                     </picture>
                 </div>
             </div>
@@ -134,7 +167,7 @@
                 <div class="single-image-box">
                     <picture>
                         <source media="(max-width: 1024px)" srcset="Sample2S.jpg">
-                        <img src="Sample2.jpg" alt="Interior and Transparency">
+                        <img src="Sample2.jpg" alt="Interior and Transparency" loading="lazy">
                     </picture>
                 </div>
             </div>
@@ -159,16 +192,11 @@
                 <button class="scroll-arrow left" id="arrow-left">❮</button>
                 <button class="scroll-arrow right" id="arrow-right">❯</button>
                 <div class="horizontal-scroll-wrapper" id="loop-scroll">
-                    <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1qf5NtajTEx9rbH7WTRuJGPZ1JiKmPFKY"></div>
-                    <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1vKIT5l0ZZbJbPhEMy3roedz3l4-QaFs7"></div>
-                    <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/101oQNlXTB8JDGJ2EmAeXa_oGR9DtjkfU"></div>
-                    <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1tqycntaqk2NlZFC4bMDb36xv0D656Bk3"></div>
-                    <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1R_vjEBHh7bHPLo4q-gxyjg4M6l9BjbC8"></div>
-					<div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1S6RWXbITTcucHANm3biScCGyIJPq7TQA"></div>
-                    <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1ZhOoVXw_ftBFUo6mf0or7HzqApZ7EFop"></div>					
-                    <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1T-EYA6gcFgf2KN4Svxhz5tFXYjpkvd7e"></div>
-                    <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1VN509hvCJLD3W65sEMe8bWxlqTVsqPXN"></div>
-                    <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/11IRMpZlltmdeF-Q71Fmnk1nLuU1QHJEY"></div>
+                    <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1qf5NtajTEx9rbH7WTRuJGPZ1JiKmPFKY" loading="lazy"></div>
+                    <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1vKIT5l0ZZbJbPhEMy3roedz3l4-QaFs7" loading="lazy"></div>
+                    <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/101oQNlXTB8JDGJ2EmAeXa_oGR9DtjkfU" loading="lazy"></div>
+                    <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1tqycntaqk2NlZFC4bMDb36xv0D656Bk3" loading="lazy"></div>
+                    <div class="scroll-item"><img src="https://lh3.googleusercontent.com/d/1qf5NtajTEx9rbH7WTRuJGPZ1JiKmPFKY" loading="lazy"></div>
                 </div>
             </div>
         </div>
@@ -189,20 +217,20 @@
             if (window.isInitialized) return;
             window.isInitialized = true;
 
-            // --- 1. Video Logic ---
+            // --- 1. Hero Video Logic ---
             try {
                 const video = document.getElementById('heroVideo');
                 if (video) {
                     const playVideo = () => {
                         video.playbackRate = 1.5;
                         const playPromise = video.play();
-                        // DWなどの古いブラウザエンジン対策 (play()がPromiseを返さない場合のエラー回避)
+                        // DWなどの古いブラウザエンジン対策
                         if (playPromise !== undefined) {
                             playPromise.then(() => {
                                 video.style.zIndex = "2";
                             }).catch(e => console.log("Play blocked:", e));
                         } else {
-                            video.style.zIndex = "2"; // 古いエンジン用フォールバック
+                            video.style.zIndex = "2"; 
                         }
                     };
 
@@ -221,6 +249,59 @@
                 console.warn("Video init error:", e);
             }
 
+            // --- スクロール回転ビデオの制御 ---
+            try {
+                const rv = document.getElementById('chara-rotate-video');
+                const rs = document.getElementById('chara-scroll-rotate');
+                const textBlocks = document.querySelectorAll('.rot-text-block');
+
+                if (rv && rs) {
+                    const setupRotation = () => {
+                        // ★ 動画が読み込まれたらすぐに自動再生を止め、スクロール制御に専念させる
+                        rv.pause(); 
+                        
+                        const updateVideo = () => {
+                            const rect = rs.getBoundingClientRect();
+                            const windowHeight = window.innerHeight;
+                            const scrollRange = rs.offsetHeight - windowHeight;
+
+                            if (scrollRange <= 0) return; // エラー回避
+
+                            const scrollDistance = -rect.top;
+                            let prog = scrollDistance / scrollRange;
+                            prog = Math.max(0, Math.min(0.999, prog)); // 0〜0.999に制限
+
+                            // 動画をスクロール位置に合わせてシークする
+                            if (!isNaN(rv.duration) && rv.duration > 0) {
+                                rv.currentTime = rv.duration * prog;
+                            }
+
+                            // テキストの出し分け
+                            textBlocks.forEach((block, index) => {
+                                const start = index === 0 ? 0.15 : 0.65;
+                                const end = index === 0 ? 0.45 : 0.95;
+                                if (prog > start && prog < end) {
+                                    block.classList.add('active');
+                                } else {
+                                    block.classList.remove('active');
+                                }
+                            });
+                        };
+                        window.addEventListener('scroll', () => requestAnimationFrame(updateVideo));
+                        updateVideo(); // 初回実行
+                    };
+                    if (rv.readyState >= 1) { 
+                        setupRotation(); 
+                    } else { 
+                        rv.addEventListener('loadedmetadata', setupRotation); 
+                        // ★ スマホブラウザにメタデータの読み込みを強制する
+                        rv.load(); 
+                    }
+                }
+            } catch (e) {
+                console.warn("Scroll video init error:", e);
+            }
+
             // --- 2. Slider Logic ---
             try {
                 const slider = document.getElementById('comparison-slider');
@@ -233,7 +314,7 @@
                         if(line) line.style.left = val + '%';
                     };
                     slider.addEventListener('input', (e) => update(e.target.value));
-                    slider.addEventListener('change', (e) => update(e.target.value)); // DWのライブビュー対策に追加
+                    slider.addEventListener('change', (e) => update(e.target.value)); // DWのライブビュー対策
                     update(slider.value);
                 }
             } catch (e) {
@@ -250,9 +331,9 @@
                     // DWの古いエンジン向けにscrollByの互換性を担保
                     const smoothScroll = (amount) => {
                         if ('scrollBehavior' in document.documentElement.style) {
-                            scrollWrapper.scrollBy({ left: amount, behavior: 'smooth' }); // 最新ブラウザ（GitHub）用
+                            scrollWrapper.scrollBy({ left: amount, behavior: 'smooth' });
                         } else {
-                            scrollWrapper.scrollLeft += amount; // DWライブプレビュー用
+                            scrollWrapper.scrollLeft += amount; 
                         }
                     };
 
@@ -277,6 +358,38 @@
                 }
             } catch (e) {
                 console.warn("Scroll init error:", e);
+            }
+
+            // --- 4. Lazy Video Logic (追加部分) ---
+            try {
+                const lazyVideos = document.querySelectorAll('video.lazy-video');
+                if ('IntersectionObserver' in window) {
+                    const videoObserver = new IntersectionObserver((entries, observer) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                const video = entry.target;
+                                video.load(); // 画面に近づいたら読み込み開始
+                                const playPromise = video.play();
+                                if (playPromise !== undefined) {
+                                    playPromise.catch(e => console.log("Lazy play blocked:", e));
+                                }
+                                observer.unobserve(video); // 一度再生したら監視を解除
+                            }
+                        });
+                    }, { rootMargin: "0px 0px 300px 0px" }); // 300px手前で読み込みを開始する
+
+                    lazyVideos.forEach(video => {
+                        videoObserver.observe(video);
+                    });
+                } else {
+                    // IntersectionObserver非対応の古いブラウザ向けフォールバック
+                    lazyVideos.forEach(video => {
+                        video.load();
+                        video.play();
+                    });
+                }
+            } catch (e) {
+                console.warn("Lazy video init error:", e);
             }
         };
 
